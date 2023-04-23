@@ -6,16 +6,60 @@ variable "project" {
     description = "Project name"
 }
 
+variable "env_name" {
+    description = "Environment Name"
+}
+
 variable "vpc_cidr" {
     description = "VPC CIDR block"
 }
 
-variable "public_subnet_cidr" {
+variable "public_subnet_cidr_1" {
     description = "Public subnet CIDR block"
 }
 
-variable "availability_zone" {
-    description = "AZ"
+variable "public_subnet_cidr_2" {
+    description = "Public subnet CIDR block"
+}
+
+variable "private_subnet_cidr_1" {
+    description = "Private subnet CIDR block"
+}
+
+variable "private_subnet_cidr_2" {
+    description = "Private subnet CIDR block"
+}
+
+variable "private_subnet_cidr_3" {
+    description = "Private subnet CIDR block"
+}
+
+variable "private_subnet_cidr_4" {
+    description = "Private subnet CIDR block"
+}
+
+variable "private_subnet_cidr_5" {
+    description = "Private subnet CIDR block"
+}
+
+variable "private_subnet_cidr_6" {
+    description = "Private subnet CIDR block"
+}
+
+variable "private_subnet_cidr_7" {
+    description = "Private subnet CIDR block"
+}
+
+variable "private_subnet_cidr_8" {
+    description = "Private subnet CIDR block"
+}
+
+variable "availability_zone_1" {
+    description = "Availability Zone A"
+}
+
+variable "availability_zone_2" {
+    description = "Availability Zone B"
 }
 
 variable "ami_id" {
