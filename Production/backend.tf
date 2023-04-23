@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "terrapractice-statefiles"
+    bucket = "mb-iac-states"
     region = "ap-southeast-1"
     key    = "state/"
   }
