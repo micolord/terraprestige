@@ -33,14 +33,20 @@ jobs:
 
       - name: Terraform Init
         uses: hashicorp/terraform-github-actions/init@v0.4.0
+        with:
+          tf_actions_working_dir: 'Production'
         env:
           AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Terraform Validate
+        with:
+          tf_actions_working_dir: 'Production'
         uses: hashicorp/terraform-github-actions/validate@v0.3.7
 
       - name: Terraform Apply
+        with:
+          tf_actions_working_dir: 'Production'
         uses: hashicorp/terraform-github-actions/apply@v0.4.0
         env:
           AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
