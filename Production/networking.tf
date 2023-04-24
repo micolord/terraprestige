@@ -56,3 +56,21 @@ resource "aws_route_table_association" "public_2" {
     route_table_id  = aws_route_table.public.id
 
 }
+
+resource "aws_nat_gateway" "nat_gw_1" {
+  subnet_id     = aws_subnet.public_subnet1.id
+
+  tags = {
+    Name = "${var.env_name}-${var.project}-nat-gw-1"
+  }
+  depends_on = [aws_internet_gateway.ig]
+}
+
+resource "aws_nat_gateway" "nat_gw_2" {
+  subnet_id     = aws_subnet.public_subnet2.id
+
+  tags = {
+    Name = "${var.env_name}-${var.project}-nat-gw-2"
+  }
+  depends_on = [aws_internet_gateway.ig]
+}
