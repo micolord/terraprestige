@@ -33,7 +33,7 @@ jobs:
 
       - uses: actions/upload-artifact@master
         with:
-          name: my-artifact
+          name: checkout-artifact
           path: ./
 
   terraform_validate:
@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@master
         with:
-          name: my-artifact
+          name: checkout-artifact
           path: ./
 
       - name: View Contents
@@ -70,6 +70,11 @@ jobs:
           tf_actions_version: 0.12.13
           tf_actions_working_dir: 'Production'
 
+      - uses: actions/upload-artifact@master
+        with:
+          name: validate-artifact
+          path: ./
+
   terraform_plan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -81,7 +86,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@master
         with:
-          name: my-artifact
+          name: validate-artifact
           path: ./
 
       - name: View Contents
