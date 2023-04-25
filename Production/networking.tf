@@ -31,7 +31,7 @@ resource "aws_subnet" "public_subnet2" {
         Name = "${var.env_name}-${var.project}-public-2"
     }
 
-    resource "aws_subnet" "private_subnet1" {
+resource "aws_subnet" "private_subnet1" {
     vpc_id                  = aws_vpc.vpc.id
     cidr_block              = var.private_subnet_cidr_1
     availability_zone       =  var.availability_zone_1
