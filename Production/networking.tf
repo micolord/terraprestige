@@ -43,82 +43,82 @@ resource "aws_subnet" "private_subnet1" {
 
 }
 
-#resource "aws_subnet" "private_subnet2" {
-#    vpc_id                  = aws_vpc.vpc.id
-#    cidr_block              = var.private_subnet_cidr_2
-#    availability_zone       =  var.availability_zone_2
-#    map_public_ip_on_launch = false
-#    tags = {
-#        Name = "${var.env_name}-${var.project}-private-2"
-#    }
+resource "aws_subnet" "private_subnet2" {
+    vpc_id                  = aws_vpc.vpc.id
+    cidr_block              = var.private_subnet_cidr_2
+    availability_zone       =  var.availability_zone_2
+    map_public_ip_on_launch = false
+    tags = {
+        Name = "${var.env_name}-${var.project}-private-2"
+    }
 
-#}
+}
 
-#resource "aws_subnet" "private_subnet3" {
-#    vpc_id                  = aws_vpc.vpc.id
-#    cidr_block              = var.private_subnet_cidr_3
-#    availability_zone       =  var.availability_zone_1
-#    map_public_ip_on_launch = false
-#    tags = {
-#        Name = "${var.env_name}-${var.project}-private-3"
-#    }
+resource "aws_subnet" "private_subnet3" {
+    vpc_id                  = aws_vpc.vpc.id
+    cidr_block              = var.private_subnet_cidr_3
+    availability_zone       =  var.availability_zone_1
+    map_public_ip_on_launch = false
+    tags = {
+        Name = "${var.env_name}-${var.project}-private-3"
+    }
 
-#}
+}
 
-#resource "aws_subnet" "private_subnet4" {
-#    vpc_id                  = aws_vpc.vpc.id
-#    cidr_block              = var.private_subnet_cidr_4
-#    availability_zone       =  var.availability_zone_2
-#    map_public_ip_on_launch = false
-#    tags = {
-#        Name = "${var.env_name}-${var.project}-private-4"
-#    }
+resource "aws_subnet" "private_subnet4" {
+    vpc_id                  = aws_vpc.vpc.id
+    cidr_block              = var.private_subnet_cidr_4
+    availability_zone       =  var.availability_zone_2
+    map_public_ip_on_launch = false
+    tags = {
+        Name = "${var.env_name}-${var.project}-private-4"
+    }
 
-#}
+}
 
-#resource "aws_subnet" "private_subnet5" {
-#    vpc_id                  = aws_vpc.vpc.id
-#    cidr_block              = var.private_subnet_cidr_5
-#    availability_zone       =  var.availability_zone_1
-#    map_public_ip_on_launch = false
-#    tags = {
-#        Name = "${var.env_name}-${var.project}-private-5"
-#    }
+resource "aws_subnet" "private_subnet5" {
+    vpc_id                  = aws_vpc.vpc.id
+    cidr_block              = var.private_subnet_cidr_5
+    availability_zone       =  var.availability_zone_1
+    map_public_ip_on_launch = false
+    tags = {
+        Name = "${var.env_name}-${var.project}-private-5"
+    }
 
-#}
+}
 
-#resource "aws_subnet" "private_subnet6" {
-#    vpc_id                  = aws_vpc.vpc.id
-#    cidr_block              = var.private_subnet_cidr_6
-#    availability_zone       =  var.availability_zone_2
-#    map_public_ip_on_launch = false
-#    tags = {
-#        Name = "${var.env_name}-${var.project}-private-6"
-#    }
+resource "aws_subnet" "private_subnet6" {
+    vpc_id                  = aws_vpc.vpc.id
+    cidr_block              = var.private_subnet_cidr_6
+    availability_zone       =  var.availability_zone_2
+    map_public_ip_on_launch = false
+    tags = {
+        Name = "${var.env_name}-${var.project}-private-6"
+    }
 
-#}
+}
 
-#resource "aws_subnet" "private_subnet7" {
-#    vpc_id                  = aws_vpc.vpc.id
-#    cidr_block              = var.private_subnet_cidr_7
-#    availability_zone       =  var.availability_zone_1
-#    map_public_ip_on_launch = false
-#    tags = {
-#        Name = "${var.env_name}-${var.project}-private-4"
-#    }
+resource "aws_subnet" "private_subnet7" {
+    vpc_id                  = aws_vpc.vpc.id
+    cidr_block              = var.private_subnet_cidr_7
+    availability_zone       =  var.availability_zone_1
+    map_public_ip_on_launch = false
+    tags = {
+        Name = "${var.env_name}-${var.project}-private-4"
+    }
 
-#}
+}
 
-#resource "aws_subnet" "private_subnet8" {
-#    vpc_id                  = aws_vpc.vpc.id
-#    cidr_block              = var.private_subnet_cidr_8
-#    availability_zone       =  var.availability_zone_2
-#    map_public_ip_on_launch = false
-#    tags = {
-#        Name = "${var.env_name}-${var.project}-private-8"
-#    }
+resource "aws_subnet" "private_subnet8" {
+    vpc_id                  = aws_vpc.vpc.id
+    cidr_block              = var.private_subnet_cidr_8
+    availability_zone       =  var.availability_zone_2
+    map_public_ip_on_launch = false
+    tags = {
+        Name = "${var.env_name}-${var.project}-private-8"
+    }
 
-#}
+}
 
 resource "aws_route_table" "public"{
     vpc_id = aws_vpc.vpc.id
