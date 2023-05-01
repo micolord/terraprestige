@@ -188,7 +188,7 @@ resource "aws_lb_listener" "alb2-listener" {
 
 resource "aws_lb_listener_rule" "host_based_routing3" {
   listener_arn = aws_lb_listener.alb2-listener.arn
-  priority     = 1
+  priority     = 3
 
  action {
     type             = "forward"
@@ -204,7 +204,7 @@ resource "aws_lb_listener_rule" "host_based_routing3" {
 
 resource "aws_lb_listener_rule" "host_based_routing4" {
   listener_arn = aws_lb_listener.alb1-listener.arn
-  priority     = 2
+  priority     = 4
 
  action {
     type             = "forward"
