@@ -54,7 +54,7 @@ resource "aws_security_group" "sg3" {
         from_port       = 80
         to_port         = 80
         protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg1.id
+        cidr_blocks     = ["${var.vpc_cidr}"]
     }
 
     egress {
@@ -86,7 +86,7 @@ resource "aws_security_group" "sg4" {
         from_port       = 80
         to_port         = 80
         protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg1.id
+        cidr_blocks     = ["${var.vpc_cidr}"]
     }
 
     egress {
@@ -118,7 +118,7 @@ resource "aws_security_group" "sg5" {
         from_port       = 80
         to_port         = 80
         protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg2.id
+        cidr_blocks     = ["${var.vpc_cidr}"]
     }
 
     egress {
@@ -150,7 +150,7 @@ resource "aws_security_group" "sg6" {
         from_port       = 80
         to_port         = 80
         protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg2.id
+        cidr_blocks     = ["${var.vpc_cidr}"]
     }
 
     egress {
@@ -182,31 +182,7 @@ resource "aws_security_group" "sg7" {
         from_port       = 1561
         to_port         = 1561
         protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg3.id
-    }
-
-    ingress {
-        description     = "DB Access from Compute"
-        from_port       = 1561
-        to_port         = 1561
-        protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg4.id
-    }
-
-    ingress {
-        description     = "DB Access from Compute"
-        from_port       = 1561
-        to_port         = 1561
-        protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg5.id
-    }
-
-    ingress {
-        description     = "DB Access from Compute"
-        from_port       = 1561
-        to_port         = 1561
-        protocol        = "tcp"
-        source_security_group_id = aws_security_group.sg6.id
+        cidr_blocks     = ["${var.vpc_cidr}"]
     }
 
 }
