@@ -108,3 +108,113 @@ resource "aws_lb_listener_rule" "host_based_routing2" {
   }
 }
 
+resource "aws_lb" "alb2" {
+  name = "${var.env_name}-${var.project}-BackOffice-LB"
+  internal           = true
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.sg2.id]
+  subnets            = [aws_subnet.private_subnet1.id, aws_subnet.private_subnet2.id]
+
+  enable_deletion_protection = false
+
+  tags = {
+    Name = "${var.env_name}-${var.project}-BackOffice-LB"
+  }
+}
+
+resource "aws_lb_target_group" "alb2-tg" {
+  name       = "${var.env_name}-${var.project}-BO-FE-TG"
+  port       = 80
+  protocol   = "HTTP"
+  vpc_id     = aws_vpc.vpc.id
+  slow_start = 0
+
+  load_balancing_algorithm_type = "round_robin"
+
+  stickiness {
+    enabled = false
+    type    = "lb_cookie"
+  }
+
+  health_check {
+    enabled             = true
+    port                = 80
+    interval            = 30
+    protocol            = "HTTP"
+    path                = "/"
+    matcher             = "200-302"
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
+  }
+}
+
+resource "aws_lb_target_group" "alb2-tg2" {
+  name       = "${var.env_name}-${var.project}-BO-BE-TG"
+  port       = 80
+  protocol   = "HTTP"
+  vpc_id     = aws_vpc.vpc.id
+  slow_start = 0
+
+  load_balancing_algorithm_type = "round_robin"
+
+  stickiness {
+    enabled = false
+    type    = "lb_cookie"
+  }
+
+  health_check {
+    enabled             = true
+    port                = 80
+    interval            = 30
+    protocol            = "HTTP"
+    path                = "/"
+    matcher             = "200-302"
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
+  }
+}
+
+resource "aws_lb_listener" "alb2-listener" {
+  load_balancer_arn = aws_lb.alb2.arn
+  port              = "80"
+  protocol          = "HTTP"
+  #ssl_policy        = "ELBSecurityPolicy-2016-08"
+  #certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb2-tg.arn
+  }
+}
+
+resource "aws_lb_listener_rule" "host_based_routing3" {
+  listener_arn = aws_lb_listener.alb2-listener.arn
+  priority     = 1
+
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb2-tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["bo-fe.vip"]
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "host_based_routing4" {
+  listener_arn = aws_lb_listener.alb1-listener.arn
+  priority     = 2
+
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb2-tg2.arn
+  }
+
+  condition {
+    host_header {
+      values = ["bo-be.vip"]
+    }
+  }
+}
+
