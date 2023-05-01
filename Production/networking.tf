@@ -104,7 +104,7 @@ resource "aws_subnet" "private_subnet7" {
     availability_zone       =  var.availability_zone_1
     map_public_ip_on_launch = false
     tags = {
-        Name = "${var.env_name}-${var.project}-private-4"
+        Name = "${var.env_name}-${var.project}-private-7"
     }
 
 }
