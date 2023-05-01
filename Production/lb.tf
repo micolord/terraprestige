@@ -54,13 +54,9 @@ resource "aws_lb_listener_rule" "host_based_routing" {
   listener_arn = aws_lb_listener.alb1-listener.arn
   priority     = 1
 
-  action {
-    type = "forward"
-    forward {
-      target_group {
-        arn    = aws_lb_target_group.alb1-tg.arn
-      }
-    }
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb1-tg.arn
   }
 
   condition {
@@ -69,3 +65,4 @@ resource "aws_lb_listener_rule" "host_based_routing" {
     }
   }
 }
+
