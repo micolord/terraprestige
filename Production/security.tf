@@ -141,7 +141,7 @@ resource "aws_security_group" "sg5" {
 }
 
 resource "aws_security_group" "sg6" {
-    name = "${var.env_name}-${var.project}-BackOfficeFE-Compute-SG"
+    name = "${var.env_name}-${var.project}-BackOfficeBE-Compute-SG"
     description = "Allow inbound traffic from LB"
     vpc_id      =  aws_vpc.vpc.id
 
