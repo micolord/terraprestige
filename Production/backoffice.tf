@@ -67,4 +67,4 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
   root_block_device {
     volume_size = 10
   }
-}
+} 
