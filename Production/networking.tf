@@ -32,6 +32,31 @@ resource "aws_subnet" "public_subnet2" {
     }
 }    
 
+resource "aws_route_table" "public"{
+    vpc_id = aws_vpc.vpc.id
+    tags = {
+        Name = "${var.env_name}-${var.project}-public-rt"
+    }
+}
+
+resource "aws_route" "public_internet_gateway" {
+    route_table_id          = aws_route_table.public.id
+    destination_cidr_block  =  "0.0.0.0/0"
+    gateway_id              = aws_internet_gateway.ig.id
+}
+
+resource "aws_route_table_association" "public_1" {
+    subnet_id       =  aws_subnet.public_subnet1.id 
+    route_table_id  = aws_route_table.public.id
+
+}
+
+resource "aws_route_table_association" "public_2" {
+    subnet_id       =  aws_subnet.public_subnet2.id 
+    route_table_id  = aws_route_table.public.id
+
+}
+
 resource "aws_subnet" "private_subnet1" {
     vpc_id                  = aws_vpc.vpc.id
     cidr_block              = var.private_subnet_cidr_1
@@ -51,6 +76,44 @@ resource "aws_subnet" "private_subnet2" {
     tags = {
         Name = "${var.env_name}-${var.project}-private-2"
     }
+
+}
+
+resource "aws_route_table" "private1"{
+    vpc_id = aws_vpc.vpc.id
+    tags = {
+        Name = "${var.env_name}-${var.project}-private1-rt"
+    }
+}
+
+resource "aws_route" "private1_nat_gateway" {
+    route_table_id          = aws_route_table.public.id
+    destination_cidr_block  =  "0.0.0.0/0"
+    nat_gateway_id              = aws_nat_gateway.nat_gw_1.id
+}
+
+resource "aws_route_table_association" "private_1" {
+    subnet_id       =  aws_subnet.private_subnet1.id 
+    route_table_id  = aws_route_table.private1.id
+
+}
+
+resource "aws_route_table" "private2"{
+    vpc_id = aws_vpc.vpc.id
+    tags = {
+        Name = "${var.env_name}-${var.project}-private2-rt"
+    }
+}
+
+resource "aws_route" "private2_nat_gateway" {
+    route_table_id          = aws_route_table.private2.id
+    destination_cidr_block  =  "0.0.0.0/0"
+    nat_gateway_id              = aws_nat_gateway.nat_gw_2.id
+}
+
+resource "aws_route_table_association" "private_2" {
+    subnet_id       =  aws_subnet.private_subnet2.id 
+    route_table_id  = aws_route_table.private2.id
 
 }
 
