@@ -54,7 +54,7 @@ resource "aws_instance" "node1" {
   instance_type          = "c5.large"
   ami                    = "ami-04f6e8d9cd4ba9e8c"
   vpc_security_group_ids = [aws_security_group.sg5.id]
-  subnet_id              = aws_subnet.private_subnet5
+  subnet_id              = aws_subnet.private_subnet5.id
 
 iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
