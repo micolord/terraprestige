@@ -64,3 +64,9 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
   #user_data = file("${path.root}/ec2/userdata.tpl")
 } 
+
+resource "aws_lb_target_group_attachment" "node1" {
+  target_group_arn = aws_lb_target_group.alb2-tg.arn
+  target_id        = aws_instance.node1.id
+  port             = 80
+}
