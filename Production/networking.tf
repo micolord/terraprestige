@@ -139,6 +139,44 @@ resource "aws_subnet" "private_subnet4" {
 
 }
 
+resource "aws_route_table" "private3"{
+    vpc_id = aws_vpc.vpc.id
+    tags = {
+        Name = "${var.env_name}-${var.project}-private3-rt"
+    }
+}
+
+resource "aws_route" "private3_nat_gateway" {
+    route_table_id          = aws_route_table.private3.id
+    destination_cidr_block  =  "0.0.0.0/0"
+    nat_gateway_id              = aws_nat_gateway.nat_gw_1.id
+}
+
+resource "aws_route_table_association" "private_3" {
+    subnet_id       =  aws_subnet.private_subnet3.id 
+    route_table_id  = aws_route_table.private3.id
+
+}
+
+resource "aws_route_table" "private4"{
+    vpc_id = aws_vpc.vpc.id
+    tags = {
+        Name = "${var.env_name}-${var.project}-private4-rt"
+    }
+}
+
+resource "aws_route" "private4_nat_gateway" {
+    route_table_id          = aws_route_table.private4.id
+    destination_cidr_block  =  "0.0.0.0/0"
+    nat_gateway_id              = aws_nat_gateway.nat_gw_2.id
+}
+
+resource "aws_route_table_association" "private_4" {
+    subnet_id       =  aws_subnet.private_subnet4.id 
+    route_table_id  = aws_route_table.private4.id
+
+}
+
 resource "aws_subnet" "private_subnet5" {
     vpc_id                  = aws_vpc.vpc.id
     cidr_block              = var.private_subnet_cidr_5
