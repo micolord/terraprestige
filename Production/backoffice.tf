@@ -63,8 +63,4 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
   }
 
   #user_data = file("${path.root}/ec2/userdata.tpl")
-
-  root_block_device {
-    volume_size = 10
-  }
-}
+} 
