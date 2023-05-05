@@ -6,8 +6,8 @@ resource "aws_iam_instance_profile" "backoffice-ssm-profile" {
 resource "aws_iam_role" "backoffice-ssm-role" {
   name = "${var.env_name}-${var.project}-bo-ssm-role"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
+  # Terraform's "jsonencode" function converts a 
+  # Terraform expression result to valid JSON syntax test.
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
