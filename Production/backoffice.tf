@@ -42,7 +42,7 @@ resource "aws_iam_role" "backoffice-ssm-role" {
         },
       ]
     })
-  }
+  } 
 
   tags = {
     Name = "${var.env_name}-${var.project}-bo-ssm-role"
