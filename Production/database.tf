@@ -49,10 +49,26 @@ resource "aws_db_instance" "master" {
   engine_version              = 10.6
   identifier                  = "${var.env_name}-${var.project}-master-db"
   instance_class              = "db.m6g.large"
-  #kms_key_id                  = aws/rds
   multi_az                    = true 
   password                    = random_password.master.result
   username                    = "mbdbadmin"
+  storage_encrypted           = true
+
+  timeouts {
+    create = "3h"
+    delete = "3h"
+    update = "3h"
+  }
+}
+
+
+resource "aws_db_instance" "replica" {
+  replicate_source_db         = aws_db_instance.master.identifier
+  auto_minor_version_upgrade  = false
+  backup_retention_period     = 7
+  identifier                  = "${var.env_name}-${var.project}-replica-db"
+  instance_class              = "db.m6g.large"
+  multi_az                    = false
   storage_encrypted           = true
 
   timeouts {
