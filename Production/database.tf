@@ -53,6 +53,7 @@ resource "aws_db_instance" "master" {
   password                    = random_password.master.result
   username                    = "mbdbadmin"
   storage_encrypted           = true
+  vpc_security_group_ids      = [aws_security_group.sg7.id]
 
   timeouts {
     create = "3h"
@@ -70,6 +71,7 @@ resource "aws_db_instance" "replica" {
   instance_class              = "db.m6g.large"
   multi_az                    = false
   storage_encrypted           = true
+  vpc_security_group_ids      = [aws_security_group.sg7.id]
 
   timeouts {
     create = "3h"
