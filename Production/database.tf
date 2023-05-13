@@ -42,13 +42,13 @@ resource "aws_db_instance" "master" {
   auto_minor_version_upgrade  = false                         
   backup_retention_period     = 7
   backup_window               = "17:00-19:00"
-  db_subnet_group_name        = aws_db_subnet_group.db_sub.name
+  db_subnet_group_name        = aws_db_subnet_group.db-sub.name
   parameter_group_name        = aws_db_parameter_group.masterparametergroup.name
   option_group_name           = aws_db_option_group.masteroptiongroup.name
-  engine                      = mariadb
+  engine                      = "mariadb"
   engine_version              = 10.6
   identifier                  = "${var.env_name}-${var.project}-master-db"
-  instance_class              = db.m5.large
+  instance_class              = "db.m6.large"
   #kms_key_id                  = aws/rds
   multi_az                    = true 
   password                    = random_password.master.result
