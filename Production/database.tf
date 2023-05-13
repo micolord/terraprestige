@@ -48,7 +48,7 @@ resource "aws_db_instance" "master" {
   engine                      = "mariadb"
   engine_version              = 10.6
   identifier                  = "${var.env_name}-${var.project}-master-db"
-  instance_class              = "db.m6.large"
+  instance_class              = "db.m6g.large"
   #kms_key_id                  = aws/rds
   multi_az                    = true 
   password                    = random_password.master.result
