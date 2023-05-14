@@ -46,7 +46,7 @@ resource "aws_db_instance" "master" {
   parameter_group_name        = aws_db_parameter_group.masterparametergroup.name
   option_group_name           = aws_db_option_group.masteroptiongroup.name
   engine                      = "mariadb"
-  engine_version              = 10.6.10
+  engine_version              = "10.6.10"
   identifier                  = "${var.env_name}-${var.project}-master-db"
   instance_class              = "db.m6g.large"
   multi_az                    = true 
