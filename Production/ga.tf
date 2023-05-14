@@ -20,5 +20,7 @@ resource "aws_globalaccelerator_endpoint_group" "ga-endpoint-grp" {
   endpoint_configuration {
     endpoint_id = aws_lb.alb2.arn
     weight      = 100
+
+  client_ip_preservation_enabled = true  
   }
 }
