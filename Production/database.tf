@@ -49,7 +49,7 @@ resource "aws_db_instance" "master" {
   engine                      = "mariadb"
   engine_version              = "10.6.10"
   identifier                  = "${var.env_name}-${var.project}-master-db"
-  instance_class              = "db.m6g.large"
+  instance_class              = "db.m6g.4xlarge"
   multi_az                    = true 
   password                    = random_password.master.result
   username                    = "mbdbadmin"
