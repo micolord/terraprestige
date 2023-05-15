@@ -1,6 +1,6 @@
 resource "aws_iam_instance_profile" "gamelobby-ssm-profile" {
   name = "${var.env_name}-${var.project}-gl-ssm-profile"
-  role = aws_iam_role.backoffice-ssm-role.name
+  role = aws_iam_role.gamelobby-ssm-role.name
 }
 
 resource "aws_iam_role" "gamelobby-ssm-role" {
