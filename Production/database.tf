@@ -81,6 +81,7 @@ resource "aws_db_instance" "replica" {
   multi_az                    = false
   storage_encrypted           = true
   vpc_security_group_ids      = [aws_security_group.sg7.id]
+  skip_final_snapshot         = true
 
   timeouts {
     create = "3h"
