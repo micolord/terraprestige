@@ -51,22 +51,78 @@ resource "aws_iam_role" "backoffice-ssm-role" {
 
 
 resource "aws_instance" "node1" {
-  instance_type          = "c5.large"
-  ami                    = "ami-052f483c20fa1351a"
+  instance_type          = "c5.4xlarge"
+  ami                    = "ami-0e4e3a6b9f0c183c8"
   vpc_security_group_ids = [aws_security_group.sg5.id]
   subnet_id              = aws_subnet.private_subnet1.id
 
 iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
   tags = {
-    Name = "test"
+    Name = "${var.env_name}-${var.project}-bo-fe-1"
   }
 
-  #user_data = file("${path.root}/ec2/userdata.tpl")
 } 
 
 resource "aws_lb_target_group_attachment" "node1" {
   target_group_arn = aws_lb_target_group.alb2-tg.arn
   target_id        = aws_instance.node1.id
+  port             = 80
+} 
+
+resource "aws_instance" "node2" {
+  instance_type          = "c5.4xlarge"
+  ami                    = "ami-0e4e3a6b9f0c183c8"
+  vpc_security_group_ids = [aws_security_group.sg5.id]
+  subnet_id              = aws_subnet.private_subnet2.id
+
+iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
+
+  tags = {
+    Name = "${var.env_name}-${var.project}-bo-fe-2"
+  }
+} 
+
+resource "aws_lb_target_group_attachment" "node2" {
+  target_group_arn = aws_lb_target_group.alb2-tg.arn
+  target_id        = aws_instance.node2.id
+  port             = 80
+} 
+
+resource "aws_instance" "node3" {
+  instance_type          = "c5.4xlarge"
+  ami                    = "ami-0fbcd433c55d0ff62"
+  vpc_security_group_ids = [aws_security_group.sg6.id]
+  subnet_id              = aws_subnet.private_subnet1.id
+
+iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
+
+  tags = {
+    Name = "${var.env_name}-${var.project}-bo-be-1"
+  }
+} 
+
+resource "aws_lb_target_group_attachment" "node3" {
+  target_group_arn = aws_lb_target_group.alb2-tg2.arn
+  target_id        = aws_instance.node3.id
+  port             = 80
+} 
+
+resource "aws_instance" "node4" {
+  instance_type          = "c5.4xlarge"
+  ami                    = "ami-0fbcd433c55d0ff62"
+  vpc_security_group_ids = [aws_security_group.sg6.id]
+  subnet_id              = aws_subnet.private_subnet2.id
+
+iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
+
+  tags = {
+    Name = "${var.env_name}-${var.project}-bo-be-2"
+  }
+} 
+
+resource "aws_lb_target_group_attachment" "node4" {
+  target_group_arn = aws_lb_target_group.alb2-tg2.arn
+  target_id        = aws_instance.node4.id
   port             = 80
 } 
