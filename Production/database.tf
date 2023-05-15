@@ -58,6 +58,7 @@ resource "aws_db_instance" "master" {
   vpc_security_group_ids      = [aws_security_group.sg7.id]
   final_snapshot_identifier   = "${var.env_name}-${var.project}-master-db-final-snapshot"
   skip_final_snapshot         = false
+  apply_immediately           = true
 
   lifecycle {
     ignore_changes = [
@@ -83,6 +84,7 @@ resource "aws_db_instance" "replica" {
   vpc_security_group_ids      = [aws_security_group.sg7.id]
   skip_final_snapshot         = true
   max_allocated_storage       = 500
+  apply_immediately           = true
 
   timeouts {
     create = "3h"
