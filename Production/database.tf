@@ -58,13 +58,13 @@ resource "aws_db_instance" "master" {
   vpc_security_group_ids      = [aws_security_group.sg7.id]
   final_snapshot_identifier   = "${var.env_name}-${var.project}-master-db-final-snapshot"
   skip_final_snapshot         = false
-/*
+
   lifecycle {
     ignore_changes = [
       snapshot_identifier,
     ]
   }
-*/
+
   timeouts {
     create = "3h"
     delete = "3h"
@@ -72,7 +72,7 @@ resource "aws_db_instance" "master" {
   }
 }
 
-/*
+
 resource "aws_db_instance" "replica" {
   replicate_source_db         = aws_db_instance.master.identifier
   auto_minor_version_upgrade  = false
@@ -90,4 +90,3 @@ resource "aws_db_instance" "replica" {
     update = "3h"
   }
 }
-*/
