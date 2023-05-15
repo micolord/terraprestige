@@ -52,7 +52,7 @@ resource "aws_db_instance" "master" {
   instance_class              = "db.r6g.4xlarge"
   multi_az                    = true 
   password                    = random_password.master.result
-  username                    = "mbdbadmin"
+  username                    = "metabetsadmin"
   storage_encrypted           = true
   port                        = "1561"
   vpc_security_group_ids      = [aws_security_group.sg7.id]
@@ -77,7 +77,7 @@ resource "aws_db_instance" "replica" {
   auto_minor_version_upgrade  = false
   backup_retention_period     = 7
   identifier                  = "${var.env_name}-${var.project}-replica-db"
-  instance_class              = "db.m6g.large"
+  instance_class              = "db.r6g.4xlarge"
   multi_az                    = false
   storage_encrypted           = true
   vpc_security_group_ids      = [aws_security_group.sg7.id]
