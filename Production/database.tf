@@ -56,7 +56,6 @@ resource "aws_db_instance" "master" {
   storage_encrypted           = true
   port                        = "1561"
   vpc_security_group_ids      = [aws_security_group.sg7.id]
-  skip_final_snapshot         = false
 
   timeouts {
     create = "3h"
