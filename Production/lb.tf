@@ -205,7 +205,7 @@ resource "aws_lb_listener_rule" "host_based_routing3" {
 }
 
 resource "aws_lb_listener_rule" "host_based_routing4" {
-  listener_arn = aws_lb_listener.alb1-listener.arn
+  listener_arn = aws_lb_listener.alb2-listener.arn
   priority     = 4
 
  action {
