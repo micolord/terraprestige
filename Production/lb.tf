@@ -68,14 +68,14 @@ resource "aws_lb_listener" "alb1-listener" {
   load_balancer_arn = aws_lb.alb1.arn
   port              = "443"
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2017-1-2-TLS"
+  ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
   certificate_arn   = "arn:aws:acm:ap-southeast-1:824910182745:certificate/3ba2ecd7-4085-4070-8ad0-e6884aea4c9b"
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.alb1-tg.arn
   }
 }
-
+/*
 resource "aws_lb_listener_rule" "host_based_routing" {
   listener_arn = aws_lb_listener.alb1-listener.arn
   priority     = 1
@@ -107,6 +107,7 @@ resource "aws_lb_listener_rule" "host_based_routing2" {
     }
   }
 }
+*/
 
 resource "aws_lb" "alb2" {
   name = "${var.env_name}-${var.project}-BackOffice-LB"
@@ -178,7 +179,7 @@ resource "aws_lb_listener" "alb2-listener" {
   load_balancer_arn = aws_lb.alb2.arn
   port              = "443"
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2017-1-2-TLS"
+  ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
   certificate_arn   = "arn:aws:acm:ap-southeast-1:824910182745:certificate/3ba2ecd7-4085-4070-8ad0-e6884aea4c9b"
   default_action {
     type             = "forward"
@@ -186,6 +187,7 @@ resource "aws_lb_listener" "alb2-listener" {
   }
 }
 
+/*
 resource "aws_lb_listener_rule" "host_based_routing3" {
   listener_arn = aws_lb_listener.alb2-listener.arn
   priority     = 3
@@ -217,4 +219,5 @@ resource "aws_lb_listener_rule" "host_based_routing4" {
     }
   }
 }
+*/
 
