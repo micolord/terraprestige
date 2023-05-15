@@ -56,6 +56,13 @@ resource "aws_db_instance" "master" {
   storage_encrypted           = true
   port                        = "1561"
   vpc_security_group_ids      = [aws_security_group.sg7.id]
+  final_snapshot_identifier   = "${var.env_name}-${var.project}-master-db-final-snapshot"
+
+  lifecycle {
+    ignore_changes = [
+      snapshot_identifier,
+    ]
+  }
 
   timeouts {
     create = "3h"
