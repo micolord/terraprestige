@@ -37,6 +37,7 @@ resource "aws_secretsmanager_secret_version" "password" {
 }
 
 resource "aws_db_instance" "master" {
+  snapshot_identifier         = "arn:aws:rds:ap-southeast-1:824910182745:snapshot:adhoc-backup-metabets-db-uat-2023-05-15"
   allocated_storage           = 200
   max_allocated_storage       = 500
   auto_minor_version_upgrade  = false                         
@@ -53,7 +54,9 @@ resource "aws_db_instance" "master" {
   password                    = random_password.master.result
   username                    = "mbdbadmin"
   storage_encrypted           = true
+  port                        = "1561"
   vpc_security_group_ids      = [aws_security_group.sg7.id]
+  skip_final_snapshot         = true
 
   timeouts {
     create = "3h"
@@ -62,7 +65,7 @@ resource "aws_db_instance" "master" {
   }
 }
 
-
+/*
 resource "aws_db_instance" "replica" {
   replicate_source_db         = aws_db_instance.master.identifier
   auto_minor_version_upgrade  = false
@@ -79,3 +82,4 @@ resource "aws_db_instance" "replica" {
     update = "3h"
   }
 }
+*/
