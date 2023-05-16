@@ -51,8 +51,8 @@ resource "aws_iam_role" "gamelobby-ssm-role" {
 
 
 resource "aws_instance" "gl-node1" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-0721577fdb2dd8dd8"
+  instance_type          = var.gl_fe_instance_type
+  ami                    = var.gl_fe_ami_id
   vpc_security_group_ids = [aws_security_group.sg3.id]
   subnet_id              = aws_subnet.private_subnet1.id
 
@@ -71,8 +71,8 @@ resource "aws_lb_target_group_attachment" "gl-node1" {
 } 
 
 resource "aws_instance" "gl-node2" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-0721577fdb2dd8dd8"
+  instance_type          = var.gl_fe_instance_type
+  ami                    = var.gl_fe_ami_id
   vpc_security_group_ids = [aws_security_group.sg3.id]
   subnet_id              = aws_subnet.private_subnet2.id
 
@@ -91,8 +91,8 @@ resource "aws_lb_target_group_attachment" "gl-node2" {
 
 
 resource "aws_instance" "gl-node3" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-06a3a573262f2fa9e"
+  instance_type          = var.gl_be_instance_type
+  ami                    = var.gl_be_ami_id
   vpc_security_group_ids = [aws_security_group.sg4.id]
   subnet_id              = aws_subnet.private_subnet1.id
 
@@ -110,8 +110,8 @@ resource "aws_lb_target_group_attachment" "gl-node3" {
 } 
 
 resource "aws_instance" "gl-node4" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-06a3a573262f2fa9e"
+  instance_type          = var.gl_be_instance_type
+  ami                    = var.gl_be_ami_id
   vpc_security_group_ids = [aws_security_group.sg4.id]
   subnet_id              = aws_subnet.private_subnet2.id
 
