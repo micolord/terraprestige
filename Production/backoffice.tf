@@ -51,8 +51,8 @@ resource "aws_iam_role" "backoffice-ssm-role" {
 
 
 resource "aws_instance" "node1" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-0e4e3a6b9f0c183c8"
+  instance_type          = var.bo_fe_instance_type
+  ami                    = var.bo_fe_ami_id
   vpc_security_group_ids = [aws_security_group.sg5.id]
   subnet_id              = aws_subnet.private_subnet1.id
 
@@ -71,8 +71,8 @@ resource "aws_lb_target_group_attachment" "node1" {
 } 
 
 resource "aws_instance" "node2" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-0e4e3a6b9f0c183c8"
+  instance_type          = var.bo_fe_instance_type
+  ami                    = var.bo_fe_ami_id
   vpc_security_group_ids = [aws_security_group.sg5.id]
   subnet_id              = aws_subnet.private_subnet2.id
 
@@ -90,8 +90,8 @@ resource "aws_lb_target_group_attachment" "node2" {
 } 
 
 resource "aws_instance" "node3" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-0fbcd433c55d0ff62"
+  instance_type          = var.bo_be_instance_type
+  ami                    = var.bo_be_ami_id
   vpc_security_group_ids = [aws_security_group.sg6.id]
   subnet_id              = aws_subnet.private_subnet1.id
 
@@ -109,8 +109,8 @@ resource "aws_lb_target_group_attachment" "node3" {
 } 
 
 resource "aws_instance" "node4" {
-  instance_type          = "c5.4xlarge"
-  ami                    = "ami-0fbcd433c55d0ff62"
+  instance_type          = var.bo_be_instance_type
+  ami                    = var.bo_be_ami_id
   vpc_security_group_ids = [aws_security_group.sg6.id]
   subnet_id              = aws_subnet.private_subnet2.id
 

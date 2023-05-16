@@ -62,10 +62,34 @@ variable "availability_zone_2" {
     description = "Availability Zone B"
 }
 
-variable "ami_id" {
+variable "gl_fe_ami_id" {
     description = "Instance AMI"
 }
 
-variable "web_instance_type" {
+variable "gl_be_ami_id" {
+    description = "Instance AMI"
+}
+
+variable "bo_fe_ami_id" {
+    description = "Instance AMI"
+}
+
+variable "bo_be_ami_id" {
+    description = "Instance AMI"
+}
+
+variable "gl_fe_instance_type" {
+    description = "Instance type"
+}
+
+variable "gl_be_instance_type" {
+    description = "Instance type"
+}
+
+variable "bo_fe_instance_type" {
+    description = "Instance type"
+}
+
+variable "bo_be_instance_type" {
     description = "Instance type"
 }
