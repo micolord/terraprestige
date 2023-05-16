@@ -93,3 +93,15 @@ variable "bo_fe_instance_type" {
 variable "bo_be_instance_type" {
     description = "Instance type"
 }
+
+variable "replica_instance_class" {
+    description = "Instance type"
+}
+
+variable "master_source_snap" {
+    description = "Source snapshot ID"
+}
+
+variable "master_instance_class" {
+    description = "Instance type"
+}
