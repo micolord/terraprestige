@@ -37,7 +37,7 @@ resource "aws_secretsmanager_secret_version" "password" {
 }
 
 resource "aws_db_instance" "master" {
-  snapshot_identifier         = "arn:aws:rds:ap-southeast-1:824910182745:snapshot:adhoc-backup-metabets-db-uat-2023-05-15"
+  snapshot_identifier         = var.master_source_snap
   allocated_storage           = 200
   max_allocated_storage       = 500
   auto_minor_version_upgrade  = false                         
@@ -49,7 +49,7 @@ resource "aws_db_instance" "master" {
   engine                      = "mariadb"
   engine_version              = "10.6.10"
   identifier                  = "${var.env_name}-${var.project}-master-db"
-  instance_class              = "db.r6g.4xlarge"
+  instance_class              = var.master_instance_class
   multi_az                    = true 
   password                    = random_password.master.result
   username                    = "metabetsadmin"
@@ -78,7 +78,7 @@ resource "aws_db_instance" "replica" {
   auto_minor_version_upgrade  = false
   backup_retention_period     = 7
   identifier                  = "${var.env_name}-${var.project}-replica-db"
-  instance_class              = "db.r6g.4xlarge"
+  instance_class              = var.replica_instance_class
   multi_az                    = false
   storage_encrypted           = true
   vpc_security_group_ids      = [aws_security_group.sg7.id]
