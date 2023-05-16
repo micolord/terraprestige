@@ -23,7 +23,7 @@ data "archive_file" "source_code" {
   output_path = "lambda_function.zip"
 }
 
-resource "aws_lambda_function" "test_lambda" {
+resource "aws_lambda_function" "webhook_lambda" {
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
   filename      = "lambda_function.zip"
@@ -42,4 +42,23 @@ resource "aws_lambda_function" "test_lambda" {
     }
   }
   */
+}
+
+
+resource "aws_lambda_permission" "with_sns" {
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.func.function_name
+  principal     = "sns.amazonaws.com"
+  source_arn    = aws_sns_topic.default.arn
+}
+
+resource "aws_sns_topic" "default" {
+  name = "call-lambda-maybe"
+}
+
+resource "aws_sns_topic_subscription" "lambda" {
+  topic_arn = aws_sns_topic.default.arn
+  protocol  = "lambda"
+  endpoint  = aws_lambda_function.func.arn
 }
