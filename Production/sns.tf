@@ -8,7 +8,7 @@ resource "aws_lambda_permission" "ec2_cpu" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.webhook_lambda.function_name
   principal     = "sns.amazonaws.com"
-  source_arn    = aws_sns_topic.ec2_cpu.ar
+  source_arn    = aws_sns_topic.ec2_cpu.arn
 }
 
 resource "aws_sns_topic_subscription" "ec2_cpu" {
