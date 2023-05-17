@@ -35,7 +35,7 @@ resource "aws_globalaccelerator_listener" "ga-listener-80" {
   }
 }
 
-resource "aws_globalaccelerator_endpoint_group" "ga-endpoint-grp" {
+resource "aws_globalaccelerator_endpoint_group" "ga-endpoint-grp-80" {
   listener_arn = aws_globalaccelerator_listener.ga-listener-80.id
 
   endpoint_configuration {
@@ -84,7 +84,7 @@ resource "aws_globalaccelerator_listener" "ga-listener2-80" {
   }
 }
 
-resource "aws_globalaccelerator_endpoint_group" "ga-endpoint-grp2" {
+resource "aws_globalaccelerator_endpoint_group" "ga-endpoint-grp2-80" {
   listener_arn = aws_globalaccelerator_listener.ga-listener2-80.id
 
   endpoint_configuration {
