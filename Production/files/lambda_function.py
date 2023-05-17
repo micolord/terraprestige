@@ -12,7 +12,7 @@ def lambda_handler(event,context):
     #retrieve message from event when lamda is triggered from SNS
     print(json.dumps(event))
     
-    message = json.loads(event['Records'][0]['Sns']['Message'])
+    message = event['Records'][0]['Sns']['Message']
     print(json.dumps(message))
     
     '''

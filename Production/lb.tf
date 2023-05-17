@@ -1,3 +1,4 @@
+// GAME LOBBY LB
 resource "aws_lb" "alb1" {
   name = "${var.env_name}-${var.project}-GameLobby-LB"
   internal           = true
@@ -12,6 +13,7 @@ resource "aws_lb" "alb1" {
   }
 }
 
+// GAME LOBBY FE TG
 resource "aws_lb_target_group" "alb1-tg" {
   name       = "${var.env_name}-${var.project}-GL-FE-TG"
   port       = 80
@@ -38,6 +40,7 @@ resource "aws_lb_target_group" "alb1-tg" {
   }
 }
 
+// GAME LOBBY BE TG
 resource "aws_lb_target_group" "alb1-tg2" {
   name       = "${var.env_name}-${var.project}-GL-BE-TG"
   port       = 80
@@ -64,6 +67,7 @@ resource "aws_lb_target_group" "alb1-tg2" {
   }
 }
 
+// GAME LOBBY 443 LISTENER
 resource "aws_lb_listener" "alb1-listener" {
   load_balancer_arn = aws_lb.alb1.arn
   port              = "443"
@@ -76,6 +80,7 @@ resource "aws_lb_listener" "alb1-listener" {
   }
 }
 
+// GAME LOBBY LISTENER RULE for FE
 resource "aws_lb_listener_rule" "host_based_routing" {
   listener_arn = aws_lb_listener.alb1-listener.arn
   priority     = 1
@@ -92,6 +97,7 @@ resource "aws_lb_listener_rule" "host_based_routing" {
   }
 }
 
+// GAME LOBBY LISTENER RULE FOR BE
 resource "aws_lb_listener_rule" "host_based_routing2" {
   listener_arn = aws_lb_listener.alb1-listener.arn
   priority     = 2
@@ -108,7 +114,53 @@ resource "aws_lb_listener_rule" "host_based_routing2" {
   }
 }
 
+// GAME LOBBY PORT 80 LISTENER
+resource "aws_lb_listener" "gl-80-listener" {
+  load_balancer_arn = aws_lb.alb1.arn
+  port              = "80"
+  protocol          = "HTTP"
 
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb1-tg.arn
+  }
+}
+
+// GAME LOBBY LISTENER RULE for FE
+resource "aws_lb_listener_rule" "gl-80-listener-rule" {
+  listener_arn = aws_lb_listener.gl-80-listener.arn
+  priority     = 1
+
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb1-tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["metabets.vip"]
+    }
+  }
+}
+
+// GAME LOBBY LISTENER RULE FOR BE
+resource "aws_lb_listener_rule" "gl-80-listener-rule-2" {
+  listener_arn = aws_lb_listener.gl-80-listener.arn
+  priority     = 2
+
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb1-tg2.arn
+  }
+
+  condition {
+    host_header {
+      values = ["gl-be.metabets.vip"]
+    }
+  }
+}
+
+// BACK OFFICE LB
 resource "aws_lb" "alb2" {
   name = "${var.env_name}-${var.project}-BackOffice-LB"
   internal           = true
@@ -123,6 +175,7 @@ resource "aws_lb" "alb2" {
   }
 }
 
+// BACK OFFICE FE TG
 resource "aws_lb_target_group" "alb2-tg" {
   name       = "${var.env_name}-${var.project}-BO-FE-TG"
   port       = 80
@@ -149,6 +202,7 @@ resource "aws_lb_target_group" "alb2-tg" {
   }
 }
 
+// BACK OFFICE BO BE TG
 resource "aws_lb_target_group" "alb2-tg2" {
   name       = "${var.env_name}-${var.project}-BO-BE-TG"
   port       = 80
@@ -175,6 +229,7 @@ resource "aws_lb_target_group" "alb2-tg2" {
   }
 }
 
+// BACK OFFICE 443 LISTENER
 resource "aws_lb_listener" "alb2-listener" {
   load_balancer_arn = aws_lb.alb2.arn
   port              = "443"
@@ -187,7 +242,7 @@ resource "aws_lb_listener" "alb2-listener" {
   }
 }
 
-
+// BACK OFFICE LISTENER RULE FOR FE
 resource "aws_lb_listener_rule" "host_based_routing3" {
   listener_arn = aws_lb_listener.alb2-listener.arn
   priority     = 3
@@ -204,6 +259,7 @@ resource "aws_lb_listener_rule" "host_based_routing3" {
   }
 }
 
+// BACK OFFICE LISTENER RULE FOR BE
 resource "aws_lb_listener_rule" "host_based_routing4" {
   listener_arn = aws_lb_listener.alb2-listener.arn
   priority     = 4
@@ -220,4 +276,48 @@ resource "aws_lb_listener_rule" "host_based_routing4" {
   }
 }
 
+// BACK OFFICE PORT 80 LISTENER
+resource "aws_lb_listener" "bo-80-listener" {
+  load_balancer_arn = aws_lb.alb2.arn
+  port              = "80"
+  protocol          = "HTTP"
 
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb2-tg.arn
+  }
+}
+
+// GAME LOBBY LISTENER RULE for FE
+resource "aws_lb_listener_rule" "bo-80-listener-rule" {
+  listener_arn = aws_lb_listener.bo-80-listener.arn
+  priority     = 1
+
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb2-tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["bo-fe.metabets.vip"]
+    }
+  }
+}
+
+// GAME LOBBY LISTENER RULE FOR BE
+resource "aws_lb_listener_rule" "bo-80-listener-rule-2" {
+  listener_arn = aws_lb_listener.bo-80-listener.arn
+  priority     = 2
+
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb2-tg2.arn
+  }
+
+  condition {
+    host_header {
+      values = ["bo-be.metabets.vip"]
+    }
+  }
+}
