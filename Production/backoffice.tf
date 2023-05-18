@@ -72,7 +72,7 @@ resource "aws_lb_target_group_attachment" "node1" {
 
 resource "aws_instance" "node2" {
   instance_type          = var.bo_fe_instance_type
-  ami                    = var.bo_fe_ami_id
+  ami                    = "ami-0bfbf738d0720e594"
   vpc_security_group_ids = [aws_security_group.sg5.id]
   subnet_id              = aws_subnet.private_subnet2.id
 
@@ -110,7 +110,7 @@ resource "aws_lb_target_group_attachment" "node3" {
 
 resource "aws_instance" "node4" {
   instance_type          = var.bo_be_instance_type
-  ami                    = var.bo_be_ami_id
+  ami                    = "ami-03fe8ec68c3fb93e2"
   vpc_security_group_ids = [aws_security_group.sg6.id]
   subnet_id              = aws_subnet.private_subnet2.id
 
