@@ -1,6 +1,5 @@
 resource "aws_sns_topic" "ec2_cpu" {
   name              = "${var.env_name}-${var.project}-EC2-HIGH-CPU"
-  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_lambda_permission" "ec2_cpu" {
@@ -19,7 +18,6 @@ resource "aws_sns_topic_subscription" "ec2_cpu" {
 
 resource "aws_sns_topic" "ec2_cpu_subsided" {
   name              = "${var.env_name}-${var.project}-EC2-HIGH-CPU-RESOLVED"
-  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_lambda_permission" "ec2_cpu_subsided" {
@@ -38,7 +36,6 @@ resource "aws_sns_topic_subscription" "ec2_cpu_subsided" {
 
 resource "aws_sns_topic" "ec2_memory" {
   name              = "${var.env_name}-${var.project}-EC2-HIGH-MEMORY"
-  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_lambda_permission" "ec2_memory" {
@@ -57,7 +54,6 @@ resource "aws_sns_topic_subscription" "ec2_memory" {
 
 resource "aws_sns_topic" "db_cpu" {
   name              = "${var.env_name}-${var.project}-RDS-HIGH-CPU"
-  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_lambda_permission" "db_cpu" {
@@ -76,7 +72,6 @@ resource "aws_sns_topic_subscription" "db_cpu" {
 
 resource "aws_sns_topic" "db_cpu_subsided" {
   name              = "${var.env_name}-${var.project}-RDS-HIGH-CPU-RESOLVED"
-  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_lambda_permission" "db_cpu_subsided" {
@@ -95,7 +90,6 @@ resource "aws_sns_topic_subscription" "db_cpu_subsided" {
 
 resource "aws_sns_topic" "db_memory" {
   name              = "${var.env_name}-${var.project}-RDS-HIGH-MEMORY"
-  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_lambda_permission" "db_memory" {
