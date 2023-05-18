@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "bucket" {
     
   }
 }
-
+/*
 // S3 for static images
 resource "aws_s3_bucket" "static" {
   bucket = "${var.env_name}-${var.project}-static"
@@ -102,3 +102,4 @@ resource "aws_cloudfront_distribution" "cf_dist" {
     minimum_protocol_version = "TLSv1.2_2018"
   }
 }
+*/
