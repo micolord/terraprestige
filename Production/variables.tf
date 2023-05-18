@@ -105,3 +105,7 @@ variable "master_source_snap" {
 variable "master_instance_class" {
     description = "Instance type"
 }
+
+variable "static_domain" {
+    description = "Domain for static objects"
+}

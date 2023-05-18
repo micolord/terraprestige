@@ -34,3 +34,6 @@ bo_be_instance_type = "c5.4xlarge"
 master_source_snap = "arn:aws:rds:ap-southeast-1:824910182745:snapshot:adhoc-backup-metabets-db-uat-2023-05-15"
 master_instance_class = "db.r6g.4xlarge"
 replica_instance_class = "db.r6g.4xlarge"
+
+// Static
+static_domain = "static.metabets.vip"
