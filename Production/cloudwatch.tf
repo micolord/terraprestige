@@ -5,7 +5,7 @@ resource "aws_cloudwatch_metric_alarm" "gl_fe_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -24,7 +24,7 @@ resource "aws_cloudwatch_metric_alarm" "gl_fe2_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -43,7 +43,7 @@ resource "aws_cloudwatch_metric_alarm" "gl_be_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -62,7 +62,7 @@ resource "aws_cloudwatch_metric_alarm" "gl_be2_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -82,7 +82,7 @@ resource "aws_cloudwatch_metric_alarm" "bo_fe_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -101,7 +101,7 @@ resource "aws_cloudwatch_metric_alarm" "bo_fe2_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -120,7 +120,7 @@ resource "aws_cloudwatch_metric_alarm" "bo_be_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -139,7 +139,7 @@ resource "aws_cloudwatch_metric_alarm" "bo_be2_ec2_cpu" {
   evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = 150
+  period                    = 120
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "Average EC2 CPU utilization over last 5 minutes too high"
@@ -159,7 +159,7 @@ resource "aws_cloudwatch_metric_alarm" "master_rds_cpu" {
   evaluation_periods  = 2
   metric_name         = "CPUUtilization"
   namespace           = "AWS/RDS"
-  period              = 150
+  period              = 120
   statistic           = "Average"
   threshold           = 80
   alarm_description   = "Average database CPU utilization over last 5 minutes too high"
@@ -178,7 +178,7 @@ resource "aws_cloudwatch_metric_alarm" "master_low_memory" {
   evaluation_periods  = 2
   metric_name         = "FreeableMemory"
   namespace           = "AWS/RDS"
-  period              = 150
+  period              = 120
   statistic           = "Maximum"
   threshold           = "10000"
   alarm_description   = "Database instance memory above threshold"
@@ -197,7 +197,7 @@ resource "aws_cloudwatch_metric_alarm" "replica_rds_cpu" {
   evaluation_periods  = 2
   metric_name         = "CPUUtilization"
   namespace           = "AWS/RDS"
-  period              = 150
+  period              = 120
   statistic           = "Average"
   threshold           = 80
   alarm_description   = "Average database CPU utilization over last 5 minutes too high"
@@ -216,7 +216,7 @@ resource "aws_cloudwatch_metric_alarm" "replica_low_memory" {
   evaluation_periods  = 2
   metric_name         = "FreeableMemory"
   namespace           = "AWS/RDS"
-  period              = 150
+  period              = 120
   statistic           = "Maximum"
   threshold           = "10000"
   alarm_description   = "Database instance memory above threshold"
