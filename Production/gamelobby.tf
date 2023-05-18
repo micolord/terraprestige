@@ -40,6 +40,20 @@ resource "aws_iam_role" "gamelobby-ssm-role" {
                 }
             }
         },
+        {
+            "Sid": "SESAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ses:VerifyEmailIdentity",
+                "ses:GetSendQuota",
+                "ses:SendRawEmail",
+                "ses:DeleteIdentity",
+                "ses:GetIdentityVerificationAttributes",
+                "ses:ListIdentities",
+                "ses:VerifyDomainIdentity"
+            ],
+            "Resource": "*"
+        },
       ]
     })
   } 
