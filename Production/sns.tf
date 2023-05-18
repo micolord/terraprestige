@@ -71,7 +71,7 @@ resource "aws_sns_topic_subscription" "db_cpu" {
 }
 
 resource "aws_sns_topic" "db_cpu_subsided" {
-  name              = "${var.env_name}-${var.project}-RDS-HIGH-CPU-RESOLVED"
+  name = "${var.env_name}-${var.project}-RDS-HIGH-CPU-RESOLVED"
 }
 
 resource "aws_lambda_permission" "db_cpu_subsided" {
@@ -89,7 +89,7 @@ resource "aws_sns_topic_subscription" "db_cpu_subsided" {
 }
 
 resource "aws_sns_topic" "db_memory" {
-  name              = "${var.env_name}-${var.project}-RDS-HIGH-MEMORY"
+  name = "${var.env_name}-${var.project}-RDS-HIGH-MEMORY"
 }
 
 resource "aws_lambda_permission" "db_memory" {
@@ -102,6 +102,24 @@ resource "aws_lambda_permission" "db_memory" {
 
 resource "aws_sns_topic_subscription" "db_memory" {
   topic_arn = aws_sns_topic.db_memory.arn
+  protocol  = "lambda"
+  endpoint  = aws_lambda_function.webhook_lambda.arn
+}
+
+resource "aws_sns_topic" "db_memory_subsided" {
+  name = "${var.env_name}-${var.project}-RDS-HIGH-MEMORY-RESOLVED"
+}
+
+resource "aws_lambda_permission" "db_memory_subsided" {
+  statement_id  = "AllowExecutionFromSNS_HIGHRDSMEMORYRESOLVED"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.webhook_lambda.function_name
+  principal     = "sns.amazonaws.com"
+  source_arn    = aws_sns_topic.db_memory_subsided.arn
+}
+
+resource "aws_sns_topic_subscription" "db_memory_subsided" {
+  topic_arn = aws_sns_topic.db_memory_subsided.arn
   protocol  = "lambda"
   endpoint  = aws_lambda_function.webhook_lambda.arn
 }
