@@ -54,6 +54,28 @@ resource "aws_iam_role" "gamelobby-ssm-role" {
             ],
             "Resource": "*"
         },
+        {
+            "Sid": "S3Access",
+            "Statement": [
+            {
+              "Action": [
+                "s3:ListBucket"
+              ],
+              "Effect": "Allow",
+              "Resource": "${aws_s3_bucket.bucket.arn}"
+            },
+            {
+              "Action": [
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+              ],
+              "Effect": "Allow",
+              "Resource": "${aws_s3_bucket.bucket.arn}/*"
+            }
+          ]
+        },
       ]
     })
   } 
