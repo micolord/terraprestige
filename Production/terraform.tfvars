@@ -19,7 +19,7 @@ availability_zone_2 = "ap-southeast-1b"
 
 //// ec2 instance details
 // GameLobby
-gl_fe_ami_id = "ami-0721577fdb2dd8dd8"
+gl_fe_ami_id = "ami-0d7f1168f671af6ce"
 gl_fe_instance_type = "c5.4xlarge"
 gl_be_ami_id = "ami-06a3a573262f2fa9e"
 gl_be_instance_type = "c5.4xlarge"
