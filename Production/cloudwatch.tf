@@ -244,8 +244,8 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
 
         properties = {
           metrics = [
-            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.gl-node1.id}"],
-            [".",".",".","${aws_instance.gl-node2.id}"]
+            [ "AWS/EC2", "CPUUtilization", "InstanceId", "${aws_instance.gl-node1.id}"],
+            [ ".", ".", ".", "${aws_instance.gl-node2.id}"]
           ]
           period = 300
           stat   = "Average"
@@ -262,8 +262,8 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
 
         properties = {
           metrics = [
-            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.gl-node3.id}"],
-            [".",".",".","${aws_instance.gl-node4.id}"]
+            [ "AWS/EC2", "CPUUtilization", "InstanceId", "${aws_instance.gl-node3.id}"],
+            [ ".", ".", ".", "${aws_instance.gl-node4.id}"]
           ]
           period = 300
           stat   = "Average"
@@ -280,8 +280,8 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
 
         properties = {
           metrics = [
-            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.node1.id}"],
-            [".",".",".","${aws_instance.node2.id}"]
+            [ "AWS/EC2", "CPUUtilization", "InstanceId", "${aws_instance.node1.id}"],
+            [ ".", ".", ".", "${aws_instance.node2.id}"]
           ]
           period = 300
           stat   = "Average"
@@ -298,8 +298,8 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
 
         properties = {
           metrics = [
-            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.node3.id}"],
-            [".",".",".","${aws_instance.node4.id}"]
+            [ "AWS/EC2", "CPUUtilization", "InstanceId", "${aws_instance.node3.id}"],
+            [ ".", ".", ".", "${aws_instance.node4.id}"]
           ]
           period = 300
           stat   = "Average"
