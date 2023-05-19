@@ -56,25 +56,15 @@ resource "aws_iam_role" "backoffice-ssm-role" {
         },
         {
             "Sid": "S3Access",
-            "Statement": [
-            {
-              "Action": [
-                "s3:ListBucket"
-              ],
-              "Effect": "Allow",
-              "Resource": "${aws_s3_bucket.bucket.arn}"
-            },
-            {
-              "Action": [
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
                 "s3:DeleteObject",
                 "s3:GetObject",
                 "s3:PutObject",
                 "s3:PutObjectAcl"
               ],
-              "Effect": "Allow",
-              "Resource": "${aws_s3_bucket.bucket.arn}/*"
-            }
-          ]
+              "Resource": ["${aws_s3_bucket.bucket.arn}/*","${aws_s3_bucket.bucket.arn}"]
         },
       ]
     })
