@@ -228,3 +228,85 @@ resource "aws_cloudwatch_metric_alarm" "replica_low_memory" {
     DBInstanceIdentifier = aws_db_instance.master.id
   }
 }
+
+// DASHBOARD
+resource "aws_cloudwatch_dashboard" "MetaBets" {
+  dashboard_name = "${var.env_name}-${var.project}-dashboard"
+
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.gl-node1.id}",{ "id": "GL-FE-1" }],
+            [".",".",".","${aws_instance.gl-node2.id}",{ "id": "GL-FE-2" }]
+          ]
+          period = 300
+          stat   = "Average"
+          region = var.region
+          title  = "GL FE CPU"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.gl-node3.id}",{ "id": "GL-BE-1" }],
+            [".",".",".","${aws_instance.gl-node4.id}",{ "id": "GL-BE-2" }]
+          ]
+          period = 300
+          stat   = "Average"
+          region = var.region
+          title  = "GL FE CPU"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.node1.id}",{ "id": "BO-FE-1" }],
+            [".",".",".","${aws_instance.node2.id}",{ "id": "BO-FE-2" }]
+          ]
+          period = 300
+          stat   = "Average"
+          region = var.region
+          title  = "BO FE CPU"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            ["AWS/EC2","CPUUtilization","InstanceId","${aws_instance.node3.id}",{ "id": "BO-BE-1" }],
+            [".",".",".","${aws_instance.node4.id}",{ "id": "BO-BE-2" }]
+          ]
+          period = 300
+          stat   = "Average"
+          region = var.region
+          title  = "BO FE CPU"
+        }
+      }
+    ]
+  })
+}
