@@ -88,6 +88,10 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
     Name = "${var.env_name}-${var.project}-bo-fe-1"
   }
 
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "node1" {
@@ -107,6 +111,11 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
   tags = {
     Name = "${var.env_name}-${var.project}-bo-fe-2"
   }
+
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "node2" {
@@ -126,6 +135,11 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
   tags = {
     Name = "${var.env_name}-${var.project}-bo-be-1"
   }
+
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "node3" {
@@ -145,6 +159,11 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
   tags = {
     Name = "${var.env_name}-${var.project}-bo-be-2"
   }
+
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "node4" {
