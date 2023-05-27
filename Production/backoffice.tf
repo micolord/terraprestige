@@ -103,7 +103,7 @@ resource "aws_lb_target_group_attachment" "node1" {
 
 resource "aws_instance" "node2" {
   instance_type          = var.bo_fe_instance_type
-  ami                    = "ami-0de02f059fe9d9df6"
+  ami                    = "ami-0ff16e062a92a9f2f"
   vpc_security_group_ids = [aws_security_group.sg5.id]
   subnet_id              = aws_subnet.private_subnet2.id
 
