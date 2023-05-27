@@ -268,13 +268,13 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
           period = 300
           stat   = "Average"
           region = var.region
-          title  = "GL FE CPU"
+          title  = "GL BE CPU"
         }
       },
       {
         type   = "metric"
         x      = 0
-        y      = 0
+        y      = 6
         width  = 12
         height = 6
 
@@ -291,8 +291,8 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
       },
       {
         type   = "metric"
-        x      = 0
-        y      = 0
+        x      = 12
+        y      = 6
         width  = 12
         height = 6
 
@@ -304,7 +304,7 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
           period = 300
           stat   = "Average"
           region = var.region
-          title  = "BO FE CPU"
+          title  = "BO BE CPU"
         }
       }
     ]
