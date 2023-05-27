@@ -88,6 +88,10 @@ iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
     Name = "${var.env_name}-${var.project}-gl-fe-1"
   }
 
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "gl-node1" {
@@ -107,6 +111,11 @@ iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
   tags = {
     Name = "${var.env_name}-${var.project}-gl-fe-2"
   }
+
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "gl-node2" {
@@ -127,6 +136,11 @@ iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
   tags = {
     Name = "${var.env_name}-${var.project}-gl-be-1"
   }
+
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "gl-node3" {
@@ -141,11 +155,16 @@ resource "aws_instance" "gl-node4" {
   vpc_security_group_ids = [aws_security_group.sg4.id]
   subnet_id              = aws_subnet.private_subnet2.id
 
-iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
+  iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-gl-be-2"
   }
+
+  lifecycle {
+    ignore_changes = [ebs_optimized]
+  }
+
 } 
 
 resource "aws_lb_target_group_attachment" "gl-node4" {
