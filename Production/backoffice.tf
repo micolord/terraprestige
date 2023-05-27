@@ -86,6 +86,7 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-bo-fe-1"
+    Backup = true
   }
 
   lifecycle {
@@ -110,6 +111,7 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-bo-fe-2"
+    Backup = true
   }
 
   lifecycle {
@@ -134,6 +136,7 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-bo-be-1"
+    Backup = true
   }
 
   lifecycle {
@@ -158,6 +161,7 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-bo-be-2"
+    Backup = true
   }
 
   lifecycle {
