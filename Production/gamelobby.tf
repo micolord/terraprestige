@@ -86,6 +86,7 @@ iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-gl-fe-1"
+    Backup = true
   }
 
   lifecycle {
@@ -110,6 +111,7 @@ iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-gl-fe-2"
+    Backup = true
   }
 
   lifecycle {
@@ -135,6 +137,7 @@ iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
 
   tags = {
     Name = "${var.env_name}-${var.project}-gl-be-1"
+    Backup = true
   }
 
   lifecycle {
@@ -159,6 +162,7 @@ resource "aws_instance" "gl-node4" {
 
   tags = {
     Name = "${var.env_name}-${var.project}-gl-be-2"
+    Backup = true
   }
 
   lifecycle {
