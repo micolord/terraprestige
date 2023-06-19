@@ -38,6 +38,7 @@ resource "aws_secretsmanager_secret_version" "password" {
 
 resource "aws_db_instance" "master" {
   snapshot_identifier         = var.master_source_snap
+  performance_insights_enabled = true
   allocated_storage           = 200
   max_allocated_storage       = 500
   auto_minor_version_upgrade  = false                         
@@ -75,6 +76,7 @@ resource "aws_db_instance" "master" {
 
 resource "aws_db_instance" "replica" {
   replicate_source_db         = aws_db_instance.master.identifier
+  performance_insights_enabled = true
   auto_minor_version_upgrade  = false
   backup_retention_period     = 7
   identifier                  = "${var.env_name}-${var.project}-replica-db"
