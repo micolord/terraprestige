@@ -1,6 +1,6 @@
 resource "aws_iam_instance_profile" "jobprocessor-ssm-profile" {
   name = "${var.env_name}-${var.project}-jp-ssm-profile"
-  role = aws_iam_role.gamelobby-jp-role.name
+  role = aws_iam_role.jobprocessor-ssm-role.name
 }
 
 resource "aws_iam_role" "jobprocessor-ssm-role" {
