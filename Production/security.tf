@@ -220,3 +220,36 @@ resource "aws_security_group" "sg7" {
     }
 
 }
+
+resource "aws_security_group" "sg8" {
+    name = "${var.env_name}-${var.project}-JP-Compute-SG"
+    description = "Allow outbound traffic"
+    vpc_id      =  aws_vpc.vpc.id
+
+     egress {
+        description     = "access to the world via https"
+        from_port       = 443
+        to_port         = 443
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
+    egress {
+        description     = "access to the database"
+        from_port       = 1561
+        to_port         = 1561
+        protocol        = "tcp"
+        cidr_blocks     = ["${var.vpc_cidr}"]
+    }
+
+    egress {
+        description     = "access to the ses"
+        from_port       = 587
+        to_port         = 587
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
+}

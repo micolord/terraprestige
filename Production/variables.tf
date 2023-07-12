@@ -78,6 +78,10 @@ variable "bo_be_ami_id" {
     description = "Instance AMI"
 }
 
+variable "jp_ami_id" {
+    description = "Instance AMI"
+}
+
 variable "gl_fe_instance_type" {
     description = "Instance type"
 }
@@ -91,6 +95,10 @@ variable "bo_fe_instance_type" {
 }
 
 variable "bo_be_instance_type" {
+    description = "Instance type"
+}
+
+variable "jp_instance_type" {
     description = "Instance type"
 }
 
