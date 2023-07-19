@@ -321,3 +321,77 @@ resource "aws_lb_listener_rule" "bo-80-listener-rule-2" {
     }
   }
 }
+
+
+// JobProc  LB
+resource "aws_lb" "alb3" {
+  name = "${var.env_name}-${var.project}-JobProc-LB"
+  internal           = true
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.sg9.id]
+  subnets            = [aws_subnet.private_subnet1.id, aws_subnet.private_subnet2.id]
+
+  enable_deletion_protection = false
+
+  tags = {
+    Name = "${var.env_name}-${var.project}-JobProc-LB"
+  }
+}
+
+
+// JobProc TG
+resource "aws_lb_target_group" "alb3-tg" {
+  name       = "${var.env_name}-${var.project}-JP-TG"
+  port       = 80
+  protocol   = "HTTP"
+  vpc_id     = aws_vpc.vpc.id
+  slow_start = 0
+
+  load_balancing_algorithm_type = "round_robin"
+
+  stickiness {
+    enabled = false
+    type    = "lb_cookie"
+  }
+
+  health_check {
+    enabled             = true
+    port                = 80
+    interval            = 30
+    protocol            = "HTTP"
+    path                = "/"
+    matcher             = "200-302"
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
+  }
+}
+
+// JP 443 LISTENER
+resource "aws_lb_listener" "alb3-listener" {
+  load_balancer_arn = aws_lb.alb3.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
+  certificate_arn   = "arn:aws:acm:ap-southeast-1:824910182745:certificate/275b4225-93c5-475c-a172-b19b8df4f2c0"
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb3-tg.arn
+  }
+}
+
+// BACK OFFICE LISTENER RULE FOR FE
+resource "aws_lb_listener_rule" "host_based_routing5" {
+  listener_arn = aws_lb_listener.alb2-listener.arn
+  priority     = 1
+
+ action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb3-tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["jobproc.metabets.vip"]
+    }
+  }
+}
