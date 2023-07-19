@@ -75,7 +75,6 @@ resource "aws_iam_role" "jobprocessor-ssm-role" {
   }
 }
 
-
 resource "aws_instance" "jp-node1" {
   instance_type          = var.jp_instance_type
   ami                    = var.jp_ami_id
@@ -93,4 +92,10 @@ iam_instance_profile = aws_iam_instance_profile.jobprocessor-ssm-profile.name
     ignore_changes = [ebs_optimized]
   }
 
+} 
+
+resource "aws_lb_target_group_attachment" "jp-node1" {
+  target_group_arn = aws_lb_target_group.alb3-tg.arn
+  target_id        = aws_instance.jp-node1.id
+  port             = 80
 } 

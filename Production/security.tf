@@ -253,3 +253,34 @@ resource "aws_security_group" "sg8" {
     }
 
 }
+
+resource "aws_security_group" "sg9" {
+    name = "${var.env_name}-${var.project}-JobProc-LB-SG"
+    description = "Allow inbound traffic via https"
+    vpc_id      =  aws_vpc.vpc.id
+
+    ingress {
+        description     = "web access via https"
+        from_port       = 443
+        to_port         = 443
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        description     = "web access via http for forced redirection"
+        from_port       = 80
+        to_port         = 80
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+    }
+
+    egress {
+        description     = "access to the EC2"
+        from_port       = 80
+        to_port         = 80
+        protocol        = "tcp"
+        cidr_blocks     = ["${var.vpc_cidr}"]
+    }
+
+}
