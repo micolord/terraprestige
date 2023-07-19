@@ -379,9 +379,9 @@ resource "aws_lb_listener" "alb3-listener" {
   }
 }
 
-// BACK OFFICE LISTENER RULE FOR FE
+// JP LISTENER RULE FOR FE
 resource "aws_lb_listener_rule" "host_based_routing5" {
-  listener_arn = aws_lb_listener.alb2-listener.arn
+  listener_arn = aws_lb_listener.alb3-listener.arn
   priority     = 1
 
  action {
