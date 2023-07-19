@@ -226,6 +226,14 @@ resource "aws_security_group" "sg8" {
     description = "Allow outbound traffic"
     vpc_id      =  aws_vpc.vpc.id
 
+    ingress {
+        description     = "web access from LB"
+        from_port       = 80
+        to_port         = 80
+        protocol        = "tcp"
+        cidr_blocks     = ["${var.vpc_cidr}"]
+    }
+
      egress {
         description     = "access to the world via https"
         from_port       = 443
