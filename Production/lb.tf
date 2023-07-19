@@ -379,7 +379,7 @@ resource "aws_lb_listener" "alb3-listener" {
   }
 }
 
-// JP LISTENER RULE FOR FE
+// JP LISTENER RULE 443
 resource "aws_lb_listener_rule" "host_based_routing5" {
   listener_arn = aws_lb_listener.alb3-listener.arn
   priority     = 1
@@ -393,5 +393,17 @@ resource "aws_lb_listener_rule" "host_based_routing5" {
     host_header {
       values = ["jobproc.metabets.vip"]
     }
+  }
+}
+
+// JP LISTENER RULE 80
+resource "aws_lb_listener" "jp-80-listener" {
+  load_balancer_arn = aws_lb.alb3.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb3-tg.arn
   }
 }
