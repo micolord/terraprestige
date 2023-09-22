@@ -1,6 +1,6 @@
 region  = "ap-southeast-1"
-project = "POC"
-env_name = "POC"
+project = "poc"
+env_name = "poc"
 
 // network details
 vpc_cidr = "10.0.0.0/16"
