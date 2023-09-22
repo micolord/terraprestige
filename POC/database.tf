@@ -37,7 +37,6 @@ resource "aws_secretsmanager_secret_version" "password" {
 }
 
 resource "aws_db_instance" "master" {
-  snapshot_identifier         = var.master_source_snap
   performance_insights_enabled = true
   deletion_protection         = true
   allocated_storage           = 200
