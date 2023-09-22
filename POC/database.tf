@@ -37,7 +37,6 @@ resource "aws_secretsmanager_secret_version" "password" {
 }
 
 resource "aws_db_instance" "master" {
-  performance_insights_enabled = true
   deletion_protection         = true
   allocated_storage           = 50
   max_allocated_storage       = 100
