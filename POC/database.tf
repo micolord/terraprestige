@@ -37,7 +37,7 @@ resource "aws_secretsmanager_secret_version" "password" {
 }
 
 resource "aws_db_instance" "master" {
-  deletion_protection         = true
+  deletion_protection         = false
   allocated_storage           = 50
   max_allocated_storage       = 100
   auto_minor_version_upgrade  = false                         
