@@ -83,12 +83,6 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
 } 
 
-resource "aws_lb_target_group_attachment" "node1" {
-  target_group_arn = aws_lb_target_group.alb2-tg.arn
-  target_id        = aws_instance.node1.id
-  port             = 80
-} 
-
 resource "aws_instance" "node2" {
   instance_type          = var.bo_fe_instance_type
   ami                    = "ami-0ff16e062a92a9f2f"
@@ -108,11 +102,6 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
 } 
 
-resource "aws_lb_target_group_attachment" "node2" {
-  target_group_arn = aws_lb_target_group.alb2-tg.arn
-  target_id        = aws_instance.node2.id
-  port             = 80
-} 
 
 resource "aws_instance" "node3" {
   instance_type          = var.bo_be_instance_type
@@ -133,11 +122,6 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
 
 } 
 
-resource "aws_lb_target_group_attachment" "node3" {
-  target_group_arn = aws_lb_target_group.alb2-tg2.arn
-  target_id        = aws_instance.node3.id
-  port             = 80
-} 
 
 resource "aws_instance" "node4" {
   instance_type          = var.bo_be_instance_type
@@ -156,10 +140,4 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
     ignore_changes = [ebs_optimized]
   }
 
-} 
-
-resource "aws_lb_target_group_attachment" "node4" {
-  target_group_arn = aws_lb_target_group.alb2-tg2.arn
-  target_id        = aws_instance.node4.id
-  port             = 80
 } 
