@@ -39,8 +39,8 @@ resource "aws_secretsmanager_secret_version" "password" {
 resource "aws_db_instance" "master" {
   performance_insights_enabled = true
   deletion_protection         = true
-  allocated_storage           = 200
-  max_allocated_storage       = 500
+  allocated_storage           = 50
+  max_allocated_storage       = 100
   auto_minor_version_upgrade  = false                         
   backup_retention_period     = 7
   backup_window               = "17:00-19:00"
@@ -51,9 +51,9 @@ resource "aws_db_instance" "master" {
   engine_version              = "10.6.10"
   identifier                  = "${var.env_name}-${var.project}-master-db"
   instance_class              = var.master_instance_class
-  multi_az                    = true 
+  multi_az                    = false
   password                    = random_password.master.result
-  username                    = "metabetsadmin"
+  username                    = "mye"
   storage_encrypted           = true
   port                        = "1561"
   vpc_security_group_ids      = [aws_security_group.sg7.id]

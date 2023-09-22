@@ -1,4 +1,4 @@
-region  = "ap-southeast-1"
+region  = "ap-northeast-1"
 project = "poc"
 env_name = "poc"
 
@@ -14,13 +14,13 @@ private_subnet_cidr_5 = "10.0.6.0/24"
 private_subnet_cidr_6 = "10.0.7.0/24"
 private_subnet_cidr_7 = "10.0.8.0/24"
 private_subnet_cidr_8 = "10.0.9.0/24"
-availability_zone_1 = "ap-southeast-1a"
-availability_zone_2 = "ap-southeast-1b"
+availability_zone_1 = "ap-northeast-1a"
+availability_zone_2 = "ap-northeast-1b"
 
 
 // Back Office
-bo_fe_ami_id = ""
-bo_fe_instance_type = "c5.large"
+bo_fe_ami_id = "ami-03a1b4db103179555"
+bo_fe_instance_type = "t2.small"
 
 // db instance details
-master_instance_class = "db.r6g.large"
+master_instance_class = "db.t3.small"
