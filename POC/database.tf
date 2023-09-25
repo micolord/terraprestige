@@ -57,7 +57,7 @@ resource "aws_db_instance" "master" {
   port                        = "1561"
   vpc_security_group_ids      = [aws_security_group.sg7.id]
   final_snapshot_identifier   = "${var.env_name}-${var.project}-master-db-final-snapshot"
-  skip_final_snapshot         = true
+  skip_final_snapshot         = false
   apply_immediately           = true
 
   lifecycle {
