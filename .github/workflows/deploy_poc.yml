@@ -94,9 +94,9 @@ jobs:
           iac_dir: 'POC'
           iac_version: 'v12'
           policy_type: 'aws'
-          only_warn: true
+          only_warn: 'false'
           #scm_token: ${{ secrets.ACCESS_TOKEN }}
-          #verbose: true
+          verbose: true
           #sarif_upload: true
           #non_recursive:
           #iac_dir:
