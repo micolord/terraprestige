@@ -27,7 +27,7 @@ resource "random_password" "master"{
   override_special = "_!%^"
 }
 
-resource "aws_secretsmanager_secret" "masterpassword" {
+resource "aws_secretsmanager_secret" "masterpasswordpoc" {
   name = "${var.env_name}-${var.project}-master-db-passwords"
 }
 
