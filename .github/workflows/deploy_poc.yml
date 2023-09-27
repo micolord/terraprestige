@@ -78,7 +78,7 @@ jobs:
     defaults:
       run:
         working-directory: POC
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that will be executed as part of the job.
     steps:
       - uses: actions/download-artifact@master
         with:
