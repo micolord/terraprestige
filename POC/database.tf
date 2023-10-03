@@ -28,7 +28,7 @@ resource "random_password" "master"{
 }
 
 resource "aws_secretsmanager_secret" "masterpassword" {
-  name = "${var.env_name}-${var.project}-master-db-passwordpoc"
+  name = "${var.env_name}-${var.project}-master-db-passwordpocpoc"
 }
 
 resource "aws_secretsmanager_secret_version" "password" {
