@@ -38,6 +38,18 @@ jobs:
           name: checkout-artifact
           path: ./
 
+  approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: send approval
+        uses: varu3/slack-approval@main
+        env:
+          SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        timeout-minutes: 10
+
   terraform_validate:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
