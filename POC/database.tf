@@ -28,7 +28,7 @@ resource "random_password" "master"{
 }
 
 resource "aws_secretsmanager_secret" "masterpassword" {
-  name = "${var.env_name}-${var.project}-master-db-passwordpocpoc"
+  name = "${var.env_name}-${var.project}-master-db-passwordglobepoc"
 }
 
 resource "aws_secretsmanager_secret_version" "password" {
@@ -70,5 +70,9 @@ resource "aws_db_instance" "master" {
     create = "3h"
     delete = "3h"
     update = "3h"
+  }
+
+tags = {
+    Name     = "${var.env_name}-${var.project}-rds"
   }
 }
