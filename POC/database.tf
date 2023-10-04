@@ -13,14 +13,6 @@ resource "aws_db_parameter_group" "masterparametergroup" {
 
 }
 
-resource "aws_db_option_group" "masteroptiongroup" {
-  name                     = "${var.env_name}-${var.project}-option-group"
-  option_group_description = "Terraform Option Group"
-  engine_name              = "mariadb"
-  major_engine_version     = "10.6"
-
-}
-
 resource "random_password" "master"{
   length           = 16
   special          = true
@@ -28,7 +20,7 @@ resource "random_password" "master"{
 }
 
 resource "aws_secretsmanager_secret" "masterpassword" {
-  name = "${var.env_name}-${var.project}-master-db-passwordglobepoc"
+  name = "${var.env_name}-${var.project}-master-db-passwordglobepocs"
 }
 
 resource "aws_secretsmanager_secret_version" "password" {
@@ -45,7 +37,7 @@ resource "aws_db_instance" "master" {
   backup_window               = "17:00-19:00"
   db_subnet_group_name        = aws_db_subnet_group.db-sub.name
   parameter_group_name        = aws_db_parameter_group.masterparametergroup.name
-  option_group_name           = aws_db_option_group.masteroptiongroup.name
+  #option_group_name           = aws_db_option_group.masteroptiongroup.name
   engine                      = "mariadb"
   engine_version              = "10.6.10"
   identifier                  = "${var.env_name}-${var.project}-master-db"
