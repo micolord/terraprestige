@@ -13,14 +13,6 @@ resource "aws_db_parameter_group" "masterparametergroup" {
 
 }
 
-resource "aws_db_option_group" "masteroptiongroup" {
-  name                     = "${var.env_name}-${var.project}-option-group"
-  option_group_description = "Terraform Option Group"
-  engine_name              = "mariadb"
-  major_engine_version     = "10.6"
-
-}
-
 resource "random_password" "master"{
   length           = 16
   special          = true
@@ -45,7 +37,7 @@ resource "aws_db_instance" "master" {
   backup_window               = "17:00-19:00"
   db_subnet_group_name        = aws_db_subnet_group.db-sub.name
   parameter_group_name        = aws_db_parameter_group.masterparametergroup.name
-  option_group_name           = aws_db_option_group.masteroptiongroup.name
+  option_group_name           = rds-option-group-poc
   engine                      = "mariadb"
   engine_version              = "10.6.10"
   identifier                  = "${var.env_name}-${var.project}-master-db"
@@ -70,5 +62,9 @@ resource "aws_db_instance" "master" {
     create = "3h"
     delete = "3h"
     update = "3h"
+  }
+
+tags = {
+    Name     = "${var.env_name}-${var.project}-rds"
   }
 }
