@@ -6,8 +6,8 @@ name: Destroy POC
 on:
    #Triggers the workflow on push or pull request events but only for the "main" branch
   schedule: ## Schedule the job to run at xx weekly
-    - cron: '*/20 * * * *'
-    #- cron: '0 0 1 1 *'
+    #- cron: '*/20 * * * *'
+    - cron: '0 0 1 1 *'
 
 jobs:
    #This workflow contains a single job called "build"
