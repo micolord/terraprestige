@@ -117,3 +117,11 @@ variable "master_instance_class" {
 variable "static_domain" {
     description = "Domain for static objects"
 }
+
+variable "domain_name" {
+    description = "Domain Name"
+}
+
+variable "cert_arn" {
+    description = "CERT ARN"
+}

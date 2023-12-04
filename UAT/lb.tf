@@ -67,20 +67,20 @@ resource "aws_lb_target_group" "alb1-tg2" {
   }
 }
 
-/* TEMP TEMP
+
 // GAME LOBBY 443 LISTENER
 resource "aws_lb_listener" "alb1-listener" {
   load_balancer_arn = aws_lb.alb1.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
-  certificate_arn   = "arn:aws:acm:ap-southeast-1:824910182745:certificate/3ba2ecd7-4085-4070-8ad0-e6884aea4c9b"
+  certificate_arn   = var.cert_arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.alb1-tg.arn
   }
 }
-*/
+
 
 // GAME LOBBY LISTENER RULE for FE
 resource "aws_lb_listener_rule" "host_based_routing" {
@@ -231,14 +231,14 @@ resource "aws_lb_target_group" "alb2-tg2" {
   }
 }
 
-/* TEMP TEMP
+
 // BACK OFFICE 443 LISTENER
 resource "aws_lb_listener" "alb2-listener" {
   load_balancer_arn = aws_lb.alb2.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
-  certificate_arn   = "arn:aws:acm:ap-southeast-1:824910182745:certificate/3ba2ecd7-4085-4070-8ad0-e6884aea4c9b"
+  certificate_arn   = var.cert_arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.alb2-tg.arn
@@ -262,7 +262,7 @@ resource "aws_lb_listener_rule" "host_based_routing3" {
     }
   }
 }
-*/
+
 
 // BACK OFFICE LISTENER RULE FOR BE
 resource "aws_lb_listener_rule" "host_based_routing4" {
@@ -371,22 +371,19 @@ resource "aws_lb_target_group" "alb3-tg" {
   }
 }
 
-/*TEMP TEMP TEMPTEMP
 // JP 443 LISTENER
 resource "aws_lb_listener" "alb3-listener" {
   load_balancer_arn = aws_lb.alb3.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
-  certificate_arn   = "arn:aws:acm:ap-southeast-1:824910182745:certificate/275b4225-93c5-475c-a172-b19b8df4f2c0"
+  certificate_arn   = var.cert_arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.alb3-tg.arn
   }
 }
-*/
 
-/*TEMP TEMP TEMPTEMP
 // JP LISTENER RULE 443
 resource "aws_lb_listener_rule" "host_based_routing5" {
   listener_arn = aws_lb_listener.alb3-listener.arn
@@ -403,7 +400,7 @@ resource "aws_lb_listener_rule" "host_based_routing5" {
     }
   }
 }
-*/
+
 
 // JP LISTENER RULE 80
 resource "aws_lb_listener" "jp-80-listener" {

@@ -1,9 +1,7 @@
-
-domain_name = "prestigeplay-uat.vip"
+// project details
 region  = "ap-southeast-1"
 project = "prestige"
 env_name = "uat"
-
 
 // network details
 vpc_cidr = "100.0.0.0/16"
@@ -19,6 +17,8 @@ private_subnet_cidr_7 = "100.0.8.0/24"
 private_subnet_cidr_8 = "100.0.9.0/24"
 availability_zone_1 = "ap-southeast-1a"
 availability_zone_2 = "ap-southeast-1b"
+domain_name = "prestigeplay-uat.vip"
+cert_arn = "arn:aws:acm:ap-southeast-1:955537627376:certificate/e34f7dc9-6250-4199-9899-e92cb9c7aaf2"
 
 //// ec2 instance details
 // GameLobby
