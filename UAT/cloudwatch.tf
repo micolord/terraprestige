@@ -36,6 +36,7 @@ resource "aws_cloudwatch_metric_alarm" "gl_fe2_ec2_cpu" {
   dimensions = {
     InstanceId = aws_instance.gl-node2.id
   }
+  
 }
 
 resource "aws_cloudwatch_metric_alarm" "gl_be_ec2_cpu" {
