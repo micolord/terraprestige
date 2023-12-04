@@ -1,3 +1,4 @@
+/*
 resource "aws_sns_topic" "ec2_cpu" {
   name              = "${var.env_name}-${var.project}-EC2-HIGH-CPU"
 }

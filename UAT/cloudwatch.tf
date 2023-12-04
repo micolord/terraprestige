@@ -1,4 +1,5 @@
 // EC2 alerts GL
+/*
 resource "aws_cloudwatch_metric_alarm" "gl_fe_ec2_cpu" {
   alarm_name                = "${var.env_name}-${var.project}-gl-fe1-ec2-high-cpu"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
@@ -310,3 +311,4 @@ resource "aws_cloudwatch_dashboard" "MetaBets" {
     ]
   })
 }
+*/

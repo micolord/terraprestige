@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "mb-iac-states"
+    bucket = "uat-prestige-state-bucket"
     region = "ap-southeast-1"
     key    = "state/"
   }

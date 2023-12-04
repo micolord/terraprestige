@@ -75,6 +75,7 @@ resource "aws_db_instance" "master" {
   }
 }
 
+/*
 resource "aws_db_instance" "replica" {
   replicate_source_db         = aws_db_instance.master.identifier
   auto_minor_version_upgrade  = false
@@ -94,3 +95,4 @@ resource "aws_db_instance" "replica" {
     update = "3h"
   }
 }
+*/
