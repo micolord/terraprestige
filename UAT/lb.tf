@@ -67,6 +67,7 @@ resource "aws_lb_target_group" "alb1-tg2" {
   }
 }
 
+/* TEMP TEMP
 // GAME LOBBY 443 LISTENER
 resource "aws_lb_listener" "alb1-listener" {
   load_balancer_arn = aws_lb.alb1.arn
@@ -79,6 +80,7 @@ resource "aws_lb_listener" "alb1-listener" {
     target_group_arn = aws_lb_target_group.alb1-tg.arn
   }
 }
+*/
 
 // GAME LOBBY LISTENER RULE for FE
 resource "aws_lb_listener_rule" "host_based_routing" {
@@ -92,7 +94,7 @@ resource "aws_lb_listener_rule" "host_based_routing" {
 
   condition {
     host_header {
-      values = ["metabets.vip"]
+      values = ["${var.domain_name}"]
     }
   }
 }
@@ -109,7 +111,7 @@ resource "aws_lb_listener_rule" "host_based_routing2" {
 
   condition {
     host_header {
-      values = ["gl-be.metabets.vip"]
+      values = ["gl-be.${var.domain_name}"]
     }
   }
 }
@@ -138,7 +140,7 @@ resource "aws_lb_listener_rule" "gl-80-listener-rule" {
 
   condition {
     host_header {
-      values = ["metabets.vip"]
+      values = ["${var.domain_name}"]
     }
   }
 }
@@ -229,6 +231,7 @@ resource "aws_lb_target_group" "alb2-tg2" {
   }
 }
 
+/* TEMP TEMP
 // BACK OFFICE 443 LISTENER
 resource "aws_lb_listener" "alb2-listener" {
   load_balancer_arn = aws_lb.alb2.arn
@@ -242,6 +245,7 @@ resource "aws_lb_listener" "alb2-listener" {
   }
 }
 
+
 // BACK OFFICE LISTENER RULE FOR FE
 resource "aws_lb_listener_rule" "host_based_routing3" {
   listener_arn = aws_lb_listener.alb2-listener.arn
@@ -254,10 +258,11 @@ resource "aws_lb_listener_rule" "host_based_routing3" {
 
   condition {
     host_header {
-      values = ["bo-fe.metabets.vip"]
+      values = ["bo-fe.${var.domain_name}"]
     }
   }
 }
+*/
 
 // BACK OFFICE LISTENER RULE FOR BE
 resource "aws_lb_listener_rule" "host_based_routing4" {
@@ -271,7 +276,7 @@ resource "aws_lb_listener_rule" "host_based_routing4" {
 
   condition {
     host_header {
-      values = ["bo-be.metabets.vip"]
+      values = ["bo-be.${var.domain_name}"]
     }
   }
 }
@@ -317,7 +322,7 @@ resource "aws_lb_listener_rule" "bo-80-listener-rule-2" {
 
   condition {
     host_header {
-      values = ["bo-be.metabets.vip"]
+      values = ["bo-be.${var.domain_name}"]
     }
   }
 }
@@ -366,6 +371,7 @@ resource "aws_lb_target_group" "alb3-tg" {
   }
 }
 
+/*TEMP TEMP TEMPTEMP
 // JP 443 LISTENER
 resource "aws_lb_listener" "alb3-listener" {
   load_balancer_arn = aws_lb.alb3.arn
@@ -378,7 +384,9 @@ resource "aws_lb_listener" "alb3-listener" {
     target_group_arn = aws_lb_target_group.alb3-tg.arn
   }
 }
+*/
 
+/*TEMP TEMP TEMPTEMP
 // JP LISTENER RULE 443
 resource "aws_lb_listener_rule" "host_based_routing5" {
   listener_arn = aws_lb_listener.alb3-listener.arn
@@ -391,10 +399,11 @@ resource "aws_lb_listener_rule" "host_based_routing5" {
 
   condition {
     host_header {
-      values = ["jobproc.metabets.vip"]
+      values = ["jobproc.${var.domain_name}"]
     }
   }
 }
+*/
 
 // JP LISTENER RULE 80
 resource "aws_lb_listener" "jp-80-listener" {

@@ -1,3 +1,5 @@
+/*
+
 data "aws_iam_policy_document" "lambda_assume_role" {
   statement {
     effect = "Allow"
@@ -35,11 +37,13 @@ resource "aws_lambda_function" "webhook_lambda" {
 
   runtime = "python3.8"
 
-  /*
+
   environment {
     variables = {
       foo = "bar"
     }
   }
-  */
+
 }
+
+*/

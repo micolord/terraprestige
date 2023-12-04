@@ -1,1 +1,1 @@
-triggered by UAT branch
+triggered by Main branch
