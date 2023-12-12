@@ -4,7 +4,7 @@ project = "prestige"
 env_name = "prod"
 
 // network details
-vpc_cidr = "100.20.00.0/16"
+vpc_cidr = "100.20.0.0/16"
 public_subnet_cidr_1 = "100.20.0.0/24"
 public_subnet_cidr_2 = "100.20.1.0/24"
 private_subnet_cidr_1 = "100.20.2.0/24"
