@@ -101,32 +101,6 @@ resource "aws_lb_target_group_attachment" "gl-node1" {
   port             = 80
 } 
 
-resource "aws_instance" "gl-node2" {
-  instance_type          = var.gl_fe_instance_type
-  ami                    = var.gl_fe_ami_id
-  vpc_security_group_ids = [aws_security_group.sg3.id]
-  subnet_id              = aws_subnet.private_subnet2.id
-
-iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
-
-  tags = {
-    Name = "${var.env_name}-${var.project}-gl-fe-2"
-    Backup = true
-  }
-
-  lifecycle {
-    ignore_changes = [ebs_optimized]
-  }
-
-} 
-
-resource "aws_lb_target_group_attachment" "gl-node2" {
-  target_group_arn = aws_lb_target_group.alb1-tg.arn
-  target_id        = aws_instance.gl-node2.id
-  port             = 80
-} 
-
-
 resource "aws_instance" "gl-node3" {
   instance_type          = var.gl_be_instance_type
   ami                    = var.gl_be_ami_id
@@ -149,30 +123,5 @@ iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
 resource "aws_lb_target_group_attachment" "gl-node3" {
   target_group_arn = aws_lb_target_group.alb1-tg2.arn
   target_id        = aws_instance.gl-node3.id
-  port             = 80
-} 
-
-resource "aws_instance" "gl-node4" {
-  instance_type          = var.gl_be_instance_type
-  ami                    = var.gl_be_ami_id
-  vpc_security_group_ids = [aws_security_group.sg4.id]
-  subnet_id              = aws_subnet.private_subnet2.id
-
-  iam_instance_profile = aws_iam_instance_profile.gamelobby-ssm-profile.name
-
-  tags = {
-    Name = "${var.env_name}-${var.project}-gl-be-2"
-    Backup = true
-  }
-
-  lifecycle {
-    ignore_changes = [ebs_optimized]
-  }
-
-} 
-
-resource "aws_lb_target_group_attachment" "gl-node4" {
-  target_group_arn = aws_lb_target_group.alb1-tg2.arn
-  target_id        = aws_instance.gl-node4.id
   port             = 80
 } 
