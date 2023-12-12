@@ -101,7 +101,7 @@ variable "bo_be_instance_type" {
 variable "jp_instance_type" {
     description = "Instance type"
 }
-
+/*
 variable "replica_instance_class" {
     description = "Instance type"
 }
@@ -109,11 +109,19 @@ variable "replica_instance_class" {
 variable "master_source_snap" {
     description = "Source snapshot ID"
 }
-
+*/
 variable "master_instance_class" {
     description = "Instance type"
 }
 
 variable "static_domain" {
     description = "Domain for static objects"
+}
+
+variable "domain_name" {
+    description = "Domain Name"
+}
+
+variable "cert_arn" {
+    description = "CERT ARN"
 }

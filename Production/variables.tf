@@ -62,14 +62,66 @@ variable "availability_zone_2" {
     description = "Availability Zone B"
 }
 
+variable "gl_fe_ami_id" {
+    description = "Instance AMI"
+}
+
+variable "gl_be_ami_id" {
+    description = "Instance AMI"
+}
+
 variable "bo_fe_ami_id" {
     description = "Instance AMI"
+}
+
+variable "bo_be_ami_id" {
+    description = "Instance AMI"
+}
+
+variable "jp_ami_id" {
+    description = "Instance AMI"
+}
+
+variable "gl_fe_instance_type" {
+    description = "Instance type"
+}
+
+variable "gl_be_instance_type" {
+    description = "Instance type"
 }
 
 variable "bo_fe_instance_type" {
     description = "Instance type"
 }
 
+variable "bo_be_instance_type" {
+    description = "Instance type"
+}
+
+variable "jp_instance_type" {
+    description = "Instance type"
+}
+/*
+variable "replica_instance_class" {
+    description = "Instance type"
+}
+
+variable "master_source_snap" {
+    description = "Source snapshot ID"
+}
+*/
 variable "master_instance_class" {
     description = "Instance type"
+}
+
+variable "static_domain" {
+    description = "Domain for static objects"
+}
+
+variable "domain_name" {
+    description = "Domain Name"
+}
+
+variable "cert_arn" {
+    description = "CERT ARN"
 }

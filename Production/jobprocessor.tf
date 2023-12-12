@@ -1,13 +1,13 @@
-resource "aws_iam_instance_profile" "backoffice-ssm-profile" {
-  name = "${var.env_name}-${var.project}-bo-ssm-profile"
-  role = aws_iam_role.backoffice-ssm-role.name
+resource "aws_iam_instance_profile" "jobprocessor-ssm-profile" {
+  name = "${var.env_name}-${var.project}-jp-ssm-profile"
+  role = aws_iam_role.jobprocessor-ssm-role.name
 }
 
-resource "aws_iam_role" "backoffice-ssm-role" {
-  name = "${var.env_name}-${var.project}-bo-ssm-role"
+resource "aws_iam_role" "jobprocessor-ssm-role" {
+  name = "${var.env_name}-${var.project}-jp-ssm-role"
 
   # Terraform's "jsonencode" function converts a 
-  # Terraform expression result to valid JSON syntax
+  # Terraform expression result to valid JSON syntax.
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -53,27 +53,38 @@ resource "aws_iam_role" "backoffice-ssm-role" {
                 "ses:VerifyDomainIdentity"
             ],
             "Resource": "*"
-        }
+        },
+        {
+            "Sid": "S3Access",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+              ],
+              "Resource": ["${aws_s3_bucket.bucket.arn}/*","${aws_s3_bucket.bucket.arn}"]
+        },
       ]
     })
   } 
 
   tags = {
-    Name = "${var.env_name}-${var.project}-bo-ssm-role"
+    Name = "${var.env_name}-${var.project}-jp-ssm-role"
   }
 }
 
-
-resource "aws_instance" "node1" {
-  instance_type          = var.bo_fe_instance_type
-  ami                    = var.bo_fe_ami_id
-  vpc_security_group_ids = [aws_security_group.sg5.id]
+resource "aws_instance" "jp-node1" {
+  instance_type          = var.jp_instance_type
+  ami                    = var.jp_ami_id
+  vpc_security_group_ids = [aws_security_group.sg8.id]
   subnet_id              = aws_subnet.private_subnet1.id
 
-iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
+iam_instance_profile = aws_iam_instance_profile.jobprocessor-ssm-profile.name
 
   tags = {
-    Name = "${var.env_name}-${var.project}-bo-fe-1"
+    Name = "${var.env_name}-${var.project}-jp-1"
     Backup = true
   }
 
@@ -81,4 +92,10 @@ iam_instance_profile = aws_iam_instance_profile.backoffice-ssm-profile.name
     ignore_changes = [ebs_optimized]
   }
 
+} 
+
+resource "aws_lb_target_group_attachment" "jp-node1" {
+  target_group_arn = aws_lb_target_group.alb3-tg.arn
+  target_id        = aws_instance.jp-node1.id
+  port             = 80
 } 
