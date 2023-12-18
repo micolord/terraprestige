@@ -90,6 +90,15 @@ resource "aws_security_group" "sg3" {
         cidr_blocks     = ["${var.vpc_cidr}"]
     }
 
+    egress {
+        description     = "access to the world via http"
+        from_port       = 80
+        to_port         = 80
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
 }
 
 resource "aws_security_group" "sg4" {
@@ -131,6 +140,15 @@ resource "aws_security_group" "sg4" {
         ipv6_cidr_blocks = ["::/0"]
     }
 
+    egress {
+        description     = "access to the world via http"
+        from_port       = 80
+        to_port         = 80
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
 }
 
 resource "aws_security_group" "sg5" {
@@ -161,6 +179,15 @@ resource "aws_security_group" "sg5" {
         to_port         = 1561
         protocol        = "tcp"
         cidr_blocks     = ["${var.vpc_cidr}"]
+    }
+
+    egress {
+        description     = "access to the world via http"
+        from_port       = 80
+        to_port         = 80
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
     }
 
 }
@@ -199,6 +226,15 @@ resource "aws_security_group" "sg6" {
         description     = "access to the ses"
         from_port       = 587
         to_port         = 587
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
+    egress {
+        description     = "access to the world via http"
+        from_port       = 80
+        to_port         = 80
         protocol        = "tcp"
         cidr_blocks     = ["0.0.0.0/0"]
         ipv6_cidr_blocks = ["::/0"]
@@ -255,6 +291,15 @@ resource "aws_security_group" "sg8" {
         description     = "access to the ses"
         from_port       = 587
         to_port         = 587
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+
+    egress {
+        description     = "access to the world via http"
+        from_port       = 80
+        to_port         = 80
         protocol        = "tcp"
         cidr_blocks     = ["0.0.0.0/0"]
         ipv6_cidr_blocks = ["::/0"]
